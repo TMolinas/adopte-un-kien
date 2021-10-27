@@ -60,7 +60,7 @@ class Dog
     private $age;
 
     /**
-     * @ORM\ManyToMany(targetEntity=photo::class, inversedBy="dogs")
+     * @ORM\ManyToMany(targetEntity=Photo::class, inversedBy="dogs")
      */
     private $photo;
 
@@ -177,14 +177,14 @@ class Dog
     }
 
     /**
-     * @return Collection|photo[]
+     * @return Collection|Photo[]
      */
     public function getPhoto(): Collection
     {
         return $this->photo;
     }
 
-    public function addPhoto(photo $photo): self
+    public function addPhoto(Photo $photo): self
     {
         if (!$this->photo->contains($photo)) {
             $this->photo[] = $photo;
@@ -193,7 +193,7 @@ class Dog
         return $this;
     }
 
-    public function removePhoto(photo $photo): self
+    public function removePhoto(Photo $photo): self
     {
         $this->photo->removeElement($photo);
 
