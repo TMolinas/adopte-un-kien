@@ -2,6 +2,9 @@
 
 {% block body %}
 
-        {{ form(formAdoptant) }}
+        {{ form_start(formAdoptant) }}
+        {{ form_widget(formAdoptant) }}
+        <input class="btn btn-secondary" type="submit" value="Enregistrer">
+        {{ form_end(formAdoptant) }}
 
 {% endblock %}
