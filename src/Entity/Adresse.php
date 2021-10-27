@@ -30,13 +30,13 @@ class Adresse
     private $nameOf7Street;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="adresse")
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="Adresse")
      * @ORM\JoinColumn(nullable=false)
      */
     private $ville;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="adresse")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="Adresse")
      */
     private $users;
 
