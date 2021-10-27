@@ -25,4 +25,6 @@ class AdoptDogController extends AbstractController
     {
         return $this->render('adopt_dog/home.html.twig');
     }
+
+
 }
