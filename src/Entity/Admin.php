@@ -8,51 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=AdminRepository::class)
  */
-class Admin
+class Admin extends User
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @see UserInterface
      */
-    private $id;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isAdmin;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    public function getId(): ?int
+    public function getRoles(): array
     {
-        return $this->id;
-    }
+        $roles = parent::getRoles();
+        $roles[] = 'ROLE_ADMIN';
 
-    public function getIsAdmin(): ?bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(bool $isAdmin): self
-    {
-        $this->isAdmin = $isAdmin;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
+        return array_unique($roles);
     }
 }

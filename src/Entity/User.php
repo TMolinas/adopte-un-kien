@@ -6,59 +6,75 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"admin" = "Admin"})
  */
-class User
+abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $userName;
+    protected $userName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", length=15)
      */
-    private $telephone;
+    protected $telephone;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    protected $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    protected $password;
 
     /**
      * @ORM\ManyToOne(targetEntity=adresse::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $adresse;
+    protected $adresse;
 
     /**
      * @ORM\ManyToMany(targetEntity=ElveursSpa::class, inversedBy="users")
      */
-    private $EleversSpa;
+    protected $EleversSpa;
 
     /**
      * @ORM\ManyToMany(targetEntity=adresse::class, inversedBy="users")
      */
-    private $adress;
+    protected $adress;
 
     /**
      * @ORM\ManyToMany(targetEntity=Adoptant::class, inversedBy="users")
      */
-    private $adoptant;
+    protected $adoptant;
 
     /**
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user")
      */
-    private $annonces;
+    protected $annonces;
 
     public function __construct()
     {
@@ -221,5 +237,69 @@ class User
         }
 
         return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
