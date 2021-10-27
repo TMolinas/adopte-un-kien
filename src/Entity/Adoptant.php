@@ -34,12 +34,7 @@ class Adoptant extends User
         $this->users = new ArrayCollection();
     }
 
-    
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getNon(): ?string
     {

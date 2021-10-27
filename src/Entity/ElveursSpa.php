@@ -38,10 +38,6 @@ class ElveursSpa extends User
         $this->users = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getIsSpa(): ?bool
     {
