@@ -12,12 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Adresse
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+//    /**
+//     * @ORM\Id
+//     * @ORM\GeneratedValue
+//     * @ORM\Column(type="integer")
+//     */
+//    private $id;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -30,13 +30,13 @@ class Adresse
     private $nameOf7Street;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="Adresse")
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="adresse")
      * @ORM\JoinColumn(nullable=false)
      */
     private $ville;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="Adresse")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="adresse")
      */
     private $users;
 
@@ -45,10 +45,10 @@ class Adresse
         $this->users = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+//    public function getId(): ?int
+//    {
+//        return $this->id;
+//    }
 
     public function getNuberInStreet(): ?string
     {
