@@ -12,8 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Adoptant extends User
 {
-
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -23,16 +21,6 @@ class Adoptant extends User
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="adoptant")
-     */
-    private $users;
-
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
 
 
 
@@ -52,34 +40,4 @@ class Adoptant extends User
     {
         return $this->prenom;
     }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addAdoptant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeAdoptant($this);
-        }
-
-        return $this;
-    }
-
-
-     
 }

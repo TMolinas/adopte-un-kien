@@ -51,25 +51,10 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity=adresse::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Adresse::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=true)
      */
     protected $adresse;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=ElveursSpa::class, inversedBy="users")
-     */
-    protected $EleversSpa;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=adresse::class, inversedBy="users")
-     */
-    protected $adress;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Adoptant::class, inversedBy="users")
-     */
-    protected $adoptant;
 
     /**
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user")
@@ -78,9 +63,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->EleversSpa = new ArrayCollection();
-        $this->adress = new ArrayCollection();
-        $this->adoptant = new ArrayCollection();
+        $this->adresse = new ArrayCollection();
         $this->annonces = new ArrayCollection();
     }
 
@@ -125,86 +108,26 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAdresse(): ?adresse
+    /**
+     * @return Collection|Adresse[]
+     */
+    public function getAdresse(): Collection
     {
         return $this->adresse;
     }
 
-    public function setAdresse(?adresse $adresse): self
+    public function addAdresse(Adresse $adress): self
     {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ElveursSpa[]
-     */
-    public function getEleversSpa(): Collection
-    {
-        return $this->EleversSpa;
-    }
-
-    public function addEleversSpa(ElveursSpa $eleversSpa): self
-    {
-        if (!$this->EleversSpa->contains($eleversSpa)) {
-            $this->EleversSpa[] = $eleversSpa;
+        if (!$this->adresse->contains($adress)) {
+            $this->adresse[] = $adress;
         }
 
         return $this;
     }
 
-    public function removeEleversSpa(ElveursSpa $eleversSpa): self
+    public function removeAdresse(Adresse $adress): self
     {
-        $this->EleversSpa->removeElement($eleversSpa);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|adresse[]
-     */
-    public function getAdress(): Collection
-    {
-        return $this->adress;
-    }
-
-    public function addAdress(adresse $adress): self
-    {
-        if (!$this->adress->contains($adress)) {
-            $this->adress[] = $adress;
-        }
-
-        return $this;
-    }
-
-    public function removeAdress(adresse $adress): self
-    {
-        $this->adress->removeElement($adress);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Adoptant[]
-     */
-    public function getAdoptant(): Collection
-    {
-        return $this->adoptant;
-    }
-
-    public function addAdoptant(Adoptant $adoptant): self
-    {
-        if (!$this->adoptant->contains($adoptant)) {
-            $this->adoptant[] = $adoptant;
-        }
-
-        return $this;
-    }
-
-    public function removeAdoptant(Adoptant $adoptant): self
-    {
-        $this->adoptant->removeElement($adoptant);
+        $this->adresse->removeElement($adress);
 
         return $this;
     }

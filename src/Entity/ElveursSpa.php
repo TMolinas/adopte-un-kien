@@ -28,14 +28,8 @@ class ElveursSpa extends User
      */
     private $siret;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="EleversSpa")
-     */
-    private $users;
-
     public function __construct()
     {
-        $this->users = new ArrayCollection();
     }
 
 
@@ -75,30 +69,10 @@ class ElveursSpa extends User
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
+    public function getRoles(): array
     {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addEleversSpa($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeEleversSpa($this);
-        }
-
-        return $this;
+        $roles = parent::getRoles();
+        $roles[] = "ROLE_ELVEUR_SPA";
+        return $roles;
     }
 }

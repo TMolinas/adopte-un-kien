@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Adoptant;
+use App\Form\AdoptantType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,7 +50,7 @@ class AdoptDogController extends AbstractController
             return $this->redirectToRoute('home');
     }
 
-        return $this->render('registrationAdoptant.html.twig', [
+        return $this->render('adopt_dog/registrationAdoptant.html.twig', [
             'formAdoptant' => $formAdoptant->createView()
         ]);
     }
