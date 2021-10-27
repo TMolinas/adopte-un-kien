@@ -59,7 +59,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\ManyToMany(targetEntity=ElveursSpa::class, inversedBy="users")
      */
-    protected $EleversSpa;
+    protected $eleversSpa;
 
     /**
      * @ORM\ManyToMany(targetEntity=adresse::class, inversedBy="users")
