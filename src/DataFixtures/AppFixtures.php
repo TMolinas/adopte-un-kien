@@ -59,7 +59,58 @@ class AppFixtures extends Fixture
 
         $dog1 = new Dog();
         $dog1->setNameDog('Chien 1');
-             ->set
+             ->setBreed('labrador');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo1);
+        manager->persist($dog1);
+
+        $dog2->setNameDog('Chien 2');
+             ->setBreed('berger suisse');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo2);
+        manager->persist($dog2);
+
+        $dog3->setNameDog('Chien 3');
+             ->setBreed('staffy');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo3);
+        manager->persist($dog3);
+
+        $dog4->setNameDog('Chien 4');
+             ->setBreed('bull dog français');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo4);
+        manager->persist($dog4);
+
+        $dog5->setNameDog('Chien 5');
+             ->setBreed('bordeur colee');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo5);
+        manager->persist($dog5);
+
+        $dog6->setNameDog('Chien 6');
+             ->setBreed('berger australien');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo6);
+        manager->persist($dog6);
+
+        $dog7->setNameDog('Chien 7');
+             ->setBreed('Pub/carlin');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo7);
+        manager->persist($dog7);
+
+        $dog8->setNameDog('Chien 8');
+             ->setBreed('chiwawa');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo8);
+        manager->persist($dog8);
+
+        $dog9->setNameDog('Chien 9');
+             ->setBreed('batard');
+             ->setCanBeAdopted('true');
+             ->setPhoto($photo9);
+        manager->persist($dog9);
 
         for ($i = 1; $i <= 10; $i++) {
             $dog = new Dog();
