@@ -27,7 +27,10 @@ class AdoptDogController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render('adopt_dog/home.html.twig');
+        $repo = $this->getDoctrine()->getRepository(Annonce::class);
+        $annonces = $repo->findAll();
+        return $this->render('adopt_dog/home.html.twig', [
+            'annonces' => $annonces]);
     }
 
     /**
@@ -54,6 +57,8 @@ class AdoptDogController extends AbstractController
             'formAdoptant' => $formAdoptant->createView()
         ]);
     }
+
+
 
 
 }
