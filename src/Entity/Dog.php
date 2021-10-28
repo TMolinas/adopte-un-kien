@@ -25,7 +25,7 @@ class Dog
     private $nameDog;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $breed;
 
@@ -40,14 +40,10 @@ class Dog
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable)
      */
     private $sociability;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $nbDogs;
 
     /**
      * @ORM\Column(type="boolean")
@@ -55,7 +51,7 @@ class Dog
     private $canBeAdopted;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $age;
 
@@ -65,7 +61,7 @@ class Dog
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="dog")
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="dog", nullable=true)
      */
     private $annonces;
 
@@ -139,18 +135,7 @@ class Dog
 
         return $this;
     }
-
-    public function getNbDogs(): ?int
-    {
-        return $this->nbDogs;
-    }
-
-    public function setNbDogs(int $nbDogs): self
-    {
-        $this->nbDogs = $nbDogs;
-
-        return $this;
-    }
+    
 
     public function getCanBeAdopted(): ?bool
     {
