@@ -29,15 +29,13 @@ class Photo
      */
     private $nameOfDog;
 
+
+
     /**
-     * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="photo")
+     * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="photos")
      */
     private $dog;
 
-    public function __construct()
-    {
-        $this->dogs = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -68,29 +66,25 @@ class Photo
         return $this;
     }
 
-    /**
-     * @return Collection|Dog[]
-     */
-    public function getDogs(): Collection
-    {
-        return $this->dogs;
-    }
 
-    public function addDog(Dog $dog): self
-    {
-        if (!$this->dogs->contains($dog)) {
-            $this->dogs[] = $dog;
-            $dog->addPhoto($this);
-        }
-
-        return $this;
-    }
 
     public function removeDog(Dog $dog): self
     {
         if ($this->dogs->removeElement($dog)) {
             $dog->removePhoto($this);
         }
+
+        return $this;
+    }
+
+    public function getDog(): ?Dog
+    {
+        return $this->dog;
+    }
+
+    public function setDog(?Dog $dog): self
+    {
+        $this->dog = $dog;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,10 +36,16 @@ class Annonce
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="annonce")
      */
-    private $dog;
+    private $dogs;
+
+
+
+    public function __construct()
+    {
+        $this->dogs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -80,14 +88,33 @@ class Annonce
         return $this;
     }
 
-    public function getDog(): ?Dog
+
+    /**
+     * @return Collection|Dog[]
+     */
+    public function getDogs(): Collection
     {
-        return $this->dog;
+        return $this->dogs;
     }
 
-    public function setDog(?Dog $dog): self
+    public function addDog(Dog $dog): self
     {
-        $this->dog = $dog;
+        if (!$this->dogs->contains($dog)) {
+            $this->dogs[] = $dog;
+            $dog->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDog(Dog $dog): self
+    {
+        if ($this->dogs->removeElement($dog)) {
+            // set the owning side to null (unless already changed)
+            if ($dog->getAnnonce() === $this) {
+                $dog->setAnnonce(null);
+            }
+        }
 
         return $this;
     }
