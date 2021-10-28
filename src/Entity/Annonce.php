@@ -89,31 +89,20 @@ class Annonce
         return $this;
     }
 
-    public function getDog(): ?Dog
-    {
-        return $this->dog;
-    }
-
-    public function setDog(?Dog $dog): self
-    {
-        $this->dog = $dog;
-
-        return $this;
-    }
 
     /**
-     * @return Collection|Dog1[]
+     * @return Collection|Dog[]
      */
-    public function getDog1s(): Collection
+    public function getDogs(): Collection
     {
-        return $this->dog1s;
+        return $this->dogs;
     }
 
-    public function addDog1(Dog1 $dog1): self
+    public function addDog(Dog $dog): self
     {
-        if (!$this->dog1s->contains($dog1)) {
-            $this->dog1s[] = $dog1;
-            $dog1->setAnnonce($this);
+        if (!$this->dogs->contains($dog)) {
+            $this->dogs[] = $dog;
+            $dog->setAnnonce($this);
         }
 
         return $this;

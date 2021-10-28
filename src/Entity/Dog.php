@@ -170,7 +170,7 @@ class Dog
     {
         if (!$this->photos->contains($photo)) {
             $this->photos[] = $photo;
-            $photo->setDog1($this);
+            $photo->setDog($this);
         }
 
         return $this;

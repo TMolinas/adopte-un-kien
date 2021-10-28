@@ -60,71 +60,77 @@ class AppFixtures extends Fixture
         $manager->persist($photo9);
 
         $dog1 = new Dog();
-        $dog1->setNameDog('Chien 1');
+        $dog1->setNameOfDog('Chien 1');
         $dog1->setBreed('labrador');
         $dog1->setCanBeAdopted('true');
-        $dog1->setPhoto($photo1);
+        $dog1->addPhoto($photo1);
         $manager->persist($dog1);
 
         $dog2 = new Dog();
-        $dog2->setNameDog('Chien 2');
+        $dog2->setNameOfDog('Chien 2');
         $dog2->setBreed('berger suisse');
         $dog2->setCanBeAdopted('true');
-        $dog2->setPhoto($photo2);
+        $dog2->addPhoto($photo2);
         $manager->persist($dog2);
 
         $dog3 = new Dog();
-        $dog3->setNameDog('Chien 3');
+        $dog3->setNameOfDog('Chien 3');
         $dog3->setBreed('staffy');
         $dog3->setCanBeAdopted('true');
-        $dog3->setPhoto($photo3);
+        $dog3->addPhoto($photo3);
         $manager->persist($dog3);
 
         $dog4 = new Dog();
-        $dog4->setNameDog('Chien 4');
+        $dog4->setNameOfDog('Chien 4');
         $dog4->setBreed('bull dog français');
         $dog4->setCanBeAdopted('true');
-        $dog4->setPhoto($photo4);
+        $dog4->addPhoto($photo4);
         $manager->persist($dog4);
 
         $dog5 = new Dog();
-        $dog5->setNameDog('Chien 5');
+        $dog5->setNameOfDog('Chien 5');
         $dog5->setBreed('bordeur colee');
         $dog5->setCanBeAdopted('true');
-        $dog5->setPhoto($photo5);
+        $dog5->addPhoto($photo5);
         $manager->persist($dog5);
 
         $dog6 = new Dog();
-        $dog6->setNameDog('Chien 6');
+        $dog6->setNameOfDog('Chien 6');
         $dog6->setBreed('berger australien');
         $dog6->setCanBeAdopted('true');
-        $dog6->setPhoto($photo6);
+        $dog6->addPhoto($photo6);
         $manager->persist($dog6);
 
         $dog7 = new Dog();
-        $dog7->setNameDog('Chien 7');
+        $dog7->setNameOfDog('Chien 7');
         $dog7->setBreed('Pub/carlin');
         $dog7->setCanBeAdopted('true');
-        $dog7->setPhoto($photo7);
+        $dog7->addPhoto($photo7);
         $manager->persist($dog7);
 
         $dog8 = new Dog();
-        $dog8->setNameDog('Chien 8');
+        $dog8->setNameOfDog('Chien 8');
         $dog8->setBreed('chiwawa');
         $dog8->setCanBeAdopted('true');
-        $dog8->setPhoto($photo8);
+        $dog8->addPhoto($photo8);
         $manager->persist($dog8);
 
         $dog9 = new Dog();
-        $dog9->setNameDog('Chien 9');
+        $dog9->setNameOfDog('Chien 9');
         $dog9->setBreed('batard');
         $dog9->setCanBeAdopted('true');
-        $dog9->setPhoto($photo9);
+        $dog9->addPhoto($photo9);
         $manager->persist($dog9);
 
         $annonce1 = new Annonce();
         $annonce1->setTitre('Annonce n°1');
         $annonce1->setDate(new \Datetime());
+
+
+        $manager->persist($annonce1);
+
+        $manager->flush();
+
 
 
 
