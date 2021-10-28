@@ -34,10 +34,10 @@ class Annonce
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="annonces")
+     * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="annonce")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $dog;
+    private $dogs;
 
     public function getId(): ?int
     {

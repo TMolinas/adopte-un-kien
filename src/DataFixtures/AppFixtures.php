@@ -64,58 +64,69 @@ class AppFixtures extends Fixture
              ->setPhoto($photo1);
         manager->persist($dog1);
 
+        $dog2 = new Dog();
         $dog2->setNameDog('Chien 2');
              ->setBreed('berger suisse');
              ->setCanBeAdopted('true');
              ->setPhoto($photo2);
         manager->persist($dog2);
 
+        $dog3 = new Dog();
         $dog3->setNameDog('Chien 3');
              ->setBreed('staffy');
              ->setCanBeAdopted('true');
              ->setPhoto($photo3);
         manager->persist($dog3);
 
+        $dog4 = new Dog();
         $dog4->setNameDog('Chien 4');
              ->setBreed('bull dog français');
              ->setCanBeAdopted('true');
              ->setPhoto($photo4);
         manager->persist($dog4);
 
+        $dog5 = new Dog();
         $dog5->setNameDog('Chien 5');
              ->setBreed('bordeur colee');
              ->setCanBeAdopted('true');
              ->setPhoto($photo5);
         manager->persist($dog5);
 
+        $dog6 = new Dog();
         $dog6->setNameDog('Chien 6');
              ->setBreed('berger australien');
              ->setCanBeAdopted('true');
              ->setPhoto($photo6);
         manager->persist($dog6);
 
+        $dog7 = new Dog();
         $dog7->setNameDog('Chien 7');
              ->setBreed('Pub/carlin');
              ->setCanBeAdopted('true');
              ->setPhoto($photo7);
         manager->persist($dog7);
 
+        $dog8 = new Dog();
         $dog8->setNameDog('Chien 8');
              ->setBreed('chiwawa');
              ->setCanBeAdopted('true');
              ->setPhoto($photo8);
         manager->persist($dog8);
 
+        $dog9 = new Dog();
         $dog9->setNameDog('Chien 9');
              ->setBreed('batard');
              ->setCanBeAdopted('true');
              ->setPhoto($photo9);
         manager->persist($dog9);
 
-        for ($i = 1; $i <= 10; $i++) {
-            $dog = new Dog();
+        $annonce1 = new Annonce();
+        $annonce1->setTitre('Annonce n°1');
+                 ->setDate(new \Datetime());
+                 ->
 
-        }
+
+
         // $product = new Product();
         // $manager->persist($product);
         for ($i = 1; $i <= 10; $i++) {
