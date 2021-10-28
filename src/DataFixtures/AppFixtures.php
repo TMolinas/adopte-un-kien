@@ -58,7 +58,8 @@ class AppFixtures extends Fixture
         manager->persist($photo9);
 
         $dog1 = new Dog();
-        $dog1->st
+        $dog1->setNameDog('Chien 1');
+             ->set
 
         for ($i = 1; $i <= 10; $i++) {
             $dog = new Dog();
