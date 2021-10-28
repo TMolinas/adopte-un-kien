@@ -34,6 +34,11 @@ class Photo
      */
     private $dog;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Dog1::class, inversedBy="photos")
+     */
+    private $dog1;
+
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
@@ -91,6 +96,18 @@ class Photo
         if ($this->dogs->removeElement($dog)) {
             $dog->removePhoto($this);
         }
+
+        return $this;
+    }
+
+    public function getDog1(): ?Dog1
+    {
+        return $this->dog1;
+    }
+
+    public function setDog1(?Dog1 $dog1): self
+    {
+        $this->dog1 = $dog1;
 
         return $this;
     }

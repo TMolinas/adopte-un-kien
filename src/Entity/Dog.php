@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\DogRepository;
+use App\Repository\Dog1Repository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=DogRepository::class)
+ * @ORM\Entity(repositoryClass=Dog1Repository::class)
  */
 class Dog
 {
@@ -22,7 +22,7 @@ class Dog
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nameDog;
+    private $nameOfDog;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -32,10 +32,10 @@ class Dog
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $Lof;
+    private $lof;
 
     /**
-     * @ORM\Column(type="string", length=400, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -43,7 +43,6 @@ class Dog
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sociability;
-
 
     /**
      * @ORM\Column(type="boolean")
@@ -56,23 +55,18 @@ class Dog
     private $age;
 
     /**
-     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="dog")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="dog1")
      */
-    private $photo;
+    private $photos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="dog")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="dog1s")
      */
-    private $annonces;
-
-
+    private $annonce;
 
     public function __construct()
     {
-        $this->photo = new ArrayCollection();
-        $this->annonces = new ArrayCollection();
+        $this->photos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,14 +74,14 @@ class Dog
         return $this->id;
     }
 
-    public function getNameDog(): ?string
+    public function getNameOfDog(): ?string
     {
-        return $this->nameDog;
+        return $this->nameOfDog;
     }
 
-    public function setNameDog(string $nameDog): self
+    public function setNameOfDog(string $nameOfDog): self
     {
-        $this->nameDog = $nameDog;
+        $this->nameOfDog = $nameOfDog;
 
         return $this;
     }
@@ -97,7 +91,7 @@ class Dog
         return $this->breed;
     }
 
-    public function setBreed(string $breed): self
+    public function setBreed(?string $breed): self
     {
         $this->breed = $breed;
 
@@ -106,12 +100,12 @@ class Dog
 
     public function getLof(): ?bool
     {
-        return $this->Lof;
+        return $this->lof;
     }
 
-    public function setLof(?bool $Lof): self
+    public function setLof(?bool $lof): self
     {
-        $this->Lof = $Lof;
+        $this->lof = $lof;
 
         return $this;
     }
@@ -133,13 +127,12 @@ class Dog
         return $this->sociability;
     }
 
-    public function setSociability(string $sociability): self
+    public function setSociability(?string $sociability): self
     {
         $this->sociability = $sociability;
 
         return $this;
     }
-
 
     public function getCanBeAdopted(): ?bool
     {
@@ -158,7 +151,7 @@ class Dog
         return $this->age;
     }
 
-    public function setAge(int $age): self
+    public function setAge(?int $age): self
     {
         $this->age = $age;
 
@@ -168,15 +161,16 @@ class Dog
     /**
      * @return Collection|Photo[]
      */
-    public function getPhoto(): Collection
+    public function getPhotos(): Collection
     {
-        return $this->photo;
+        return $this->photos;
     }
 
     public function addPhoto(Photo $photo): self
     {
-        if (!$this->photo->contains($photo)) {
-            $this->photo[] = $photo;
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setDog1($this);
         }
 
         return $this;
@@ -184,39 +178,25 @@ class Dog
 
     public function removePhoto(Photo $photo): self
     {
-        $this->photo->removeElement($photo);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Annonce[]
-     */
-    public function getAnnonces(): Collection
-    {
-        return $this->annonces;
-    }
-
-    public function addAnnonce(Annonce $annonce): self
-    {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-            $annonce->setDog($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnnonce(Annonce $annonce): self
-    {
-        if ($this->annonces->removeElement($annonce)) {
+        if ($this->photos->removeElement($photo)) {
             // set the owning side to null (unless already changed)
-            if ($annonce->getDog() === $this) {
-                $annonce->setDog(null);
+            if ($photo->getDog1() === $this) {
+                $photo->setDog1(null);
             }
         }
 
         return $this;
     }
 
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Annonce $annonce): self
+    {
+        $this->annonce = $annonce;
+
+        return $this;
+    }
 }
