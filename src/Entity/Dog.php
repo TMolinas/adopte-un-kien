@@ -40,7 +40,7 @@ class Dog
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sociability;
 
@@ -57,6 +57,7 @@ class Dog
 
     /**
      * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="dog")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $photo;
 
