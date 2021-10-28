@@ -37,7 +37,6 @@ class Annonce
 
     /**
      * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="annonce")
-     * @ORM\JoinColumn(nullable=true)
      */
     private $dogs;
 
@@ -45,7 +44,7 @@ class Annonce
 
     public function __construct()
     {
-        $this->dog1s = new ArrayCollection();
+        $this->dogs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,12 +107,12 @@ class Annonce
         return $this;
     }
 
-    public function removeDog1(Dog1 $dog1): self
+    public function removeDog(Dog $dog): self
     {
-        if ($this->dog1s->removeElement($dog1)) {
+        if ($this->dogs->removeElement($dog)) {
             // set the owning side to null (unless already changed)
-            if ($dog1->getAnnonce() === $this) {
-                $dog1->setAnnonce(null);
+            if ($dog->getAnnonce() === $this) {
+                $dog->setAnnonce(null);
             }
         }
 

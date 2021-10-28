@@ -123,11 +123,50 @@ class AppFixtures extends Fixture
         $manager->persist($dog9);
 
         $annonce1 = new Annonce();
-        $annonce1->setTitre('Annonce n°1');
+        $annonce1->setTitre('Annonce 2 chiens');
         $annonce1->setDate(new \Datetime());
-
-
+        $annonce1->addDog($dog1);
+        $annonce1->addDog($dog2);
         $manager->persist($annonce1);
+
+        $annonce2 = new Annonce();
+        $annonce2->setTitre('Annonce n°2');
+        $annonce2->setDate(new \Datetime());
+        $annonce2->addDog($dog3);
+        $manager->persist($annonce2);
+
+        $annonce3 = new Annonce();
+        $annonce3->setTitre('Annonce n°3');
+        $annonce3->setDate(new \Datetime());
+        $annonce3->addDog($dog4);
+        $manager->persist($annonce3);
+
+        $annonce4 = new Annonce();
+        $annonce4->setTitre('Annonce n°4');
+        $annonce4->setDate(new \Datetime());
+        $annonce4->addDog($dog5);
+        $manager->persist($annonce4);
+
+        $annonce5 = new Annonce();
+        $annonce5->setTitre('Annonce n°5');
+        $annonce5->setDate(new \Datetime());
+        $annonce5->addDog($dog6);
+        $manager->persist($annonce5);
+
+        $annonce6 = new Annonce();
+        $annonce6->setTitre('Annonce n°6');
+        $annonce6->setDate(new \Datetime());
+        $annonce6->addDog($dog7);
+        $manager->persist($annonce6);
+
+        $annonce7 = new Annonce();
+        $annonce7->setTitre('Annonce n°7 2 chiens');
+        $annonce7->setDate(new \Datetime());
+        $annonce7->addDog($dog8);
+        $annonce7->addDog($dog9);
+        $manager->persist($annonce7);
+
+
 
         $manager->flush();
 
