@@ -30,9 +30,9 @@ class Photo
     private $nameOfDog;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Dog::class, mappedBy="photo")
+     * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="photo")
      */
-    private $dogs;
+    private $dog;
 
     public function __construct()
     {

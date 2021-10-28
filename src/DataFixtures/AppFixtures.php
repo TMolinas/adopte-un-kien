@@ -13,14 +13,14 @@ class AppFixtures extends Fixture
 
         for ($i = 1; $i <= 10; $i++) {
             $dog = new Dog();
-            $dog->
+
         }
         // $product = new Product();
         // $manager->persist($product);
         for ($i = 1; $i <= 10; $i++) {
             $annonce = new Annonce();
             $annonce->setTitre('Titre n°$i');
-                    ->set
+
         }
 
         $manager->flush();

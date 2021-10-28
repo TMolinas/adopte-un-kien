@@ -29,11 +29,13 @@ class Annonce
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $dog;
 

@@ -40,7 +40,7 @@ class Dog
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable)
+     * @ORM\Column(type="string", length=255)
      */
     private $sociability;
 
@@ -56,14 +56,17 @@ class Dog
     private $age;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Photo::class, inversedBy="dogs")
+     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="dog")
      */
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="dog", nullable=true)
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="dog")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $annonces;
+
+
 
     public function __construct()
     {
@@ -135,7 +138,7 @@ class Dog
 
         return $this;
     }
-    
+
 
     public function getCanBeAdopted(): ?bool
     {
@@ -214,4 +217,5 @@ class Dog
 
         return $this;
     }
+
 }
