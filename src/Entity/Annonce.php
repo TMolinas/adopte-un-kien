@@ -134,4 +134,17 @@ class Annonce
 
         return null;
     }
+
+    public function getFirstPhotos(): ?Photo
+    {
+        $ret[] ;
+        foreach ($this->getDogs() as $dog) {
+            $photo = $dog->getPhotos()->first();
+            if ($photo) {
+                $ret[] = $photo;
+            }
+        }
+
+        return $ret[];
+    }
 }

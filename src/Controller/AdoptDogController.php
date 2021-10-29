@@ -76,7 +76,17 @@ class AdoptDogController extends AbstractController
         ]);
     }
 
+    /**
+     *@Route("/annonce/{id}", name="annonceById")
+     */
+     public function show($id) {
+        $repo = $this->getDoctrine()->getRepository(Article::class);
 
+        $annonce = $repo->find($id);
+
+        return $this->render('adopt_dog/annonceShow.html.twig', [
+        'annonce' => $annonce]);
+     }
 
 
 }
