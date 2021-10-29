@@ -122,4 +122,16 @@ class Annonce
 
         return $this;
     }
+
+    public function getFirstPhoto(): ?Photo
+    {
+        foreach ($this->getDogs() as $dog) {
+            $photo = $dog->getPhotos()->first();
+            if ($photo) {
+                return $photo;
+            }
+        }
+
+        return null;
+    }
 }

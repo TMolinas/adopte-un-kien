@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\Dog1Repository;
+use App\Repository\DogRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=Dog1Repository::class)
+ * @ORM\Entity(repositoryClass=DogRepository::class)
  */
 class Dog
 {
@@ -55,12 +55,12 @@ class Dog
     private $age;
 
     /**
-     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="dog1")
+     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="dog")
      */
     private $photos;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="dog1s")
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="dogs")
      */
     private $annonce;
 
@@ -180,8 +180,8 @@ class Dog
     {
         if ($this->photos->removeElement($photo)) {
             // set the owning side to null (unless already changed)
-            if ($photo->getDog1() === $this) {
-                $photo->setDog1(null);
+            if ($photo->getDog() === $this) {
+                $photo->setDog(null);
             }
         }
 
