@@ -135,16 +135,18 @@ class Annonce
         return null;
     }
 
-    public function getFirstPhotos(): ?Photo
+    public function getFirstPhotos(): ArrayCollection
     {
-        $ret[] ;
+        $ret = new ArrayCollection();
         foreach ($this->getDogs() as $dog) {
-            $photo = $dog->getPhotos()->first();
+            foreach($dog->getPhotos() as $photo) {
             if ($photo) {
-                $ret[] = $photo;
+                $ret->add($photo);
             }
-        }
+            }
+        }   
 
-        return $ret[];
+        return $ret;
+        
     }
 }

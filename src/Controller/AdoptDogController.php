@@ -80,7 +80,7 @@ class AdoptDogController extends AbstractController
      *@Route("/annonce/{id}", name="annonceById")
      */
      public function show($id) {
-        $repo = $this->getDoctrine()->getRepository(Article::class);
+        $repo = $this->getDoctrine()->getRepository(Annonce::class);
 
         $annonce = $repo->find($id);
 
