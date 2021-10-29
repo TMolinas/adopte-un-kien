@@ -34,7 +34,7 @@ class Photo
     /**
      * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="photos")
      */
-    private $dogs;
+    private $dog;
 
 
     public function getId(): ?int
@@ -62,17 +62,6 @@ class Photo
     public function setNameOfDog(string $nameOfDog): self
     {
         $this->nameOfDog = $nameOfDog;
-
-        return $this;
-    }
-
-
-
-    public function removeDog(Dog $dog): self
-    {
-        if ($this->dogs->removeElement($dog)) {
-            $dog->removePhoto($this);
-        }
 
         return $this;
     }

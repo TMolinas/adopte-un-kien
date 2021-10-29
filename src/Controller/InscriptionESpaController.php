@@ -6,6 +6,7 @@ use App\Entity\ElveursSpa;
 use App\Form\InscriptionESpaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 
 class InscriptionESpaController extends AbstractController

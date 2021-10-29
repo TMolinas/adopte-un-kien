@@ -51,20 +51,9 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user")
-     */
-    protected $annonces;
-
-    /**
      * @ORM\OneToOne(targetEntity=Adresse::class, inversedBy="user", cascade={"persist", "remove"})
      */
     protected $adresse;
-
-
-    public function __construct()
-    {
-        $this->annonces = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
