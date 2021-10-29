@@ -1,6 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {%  block body %}
+    {% for annonce in annonces %}
+        <div class="card" style="max-width: 18rem;">
+            {% if annonce.firstPhoto %}
+                <img src="{{ annonce.firstPhoto.imgUrl }}" class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ annonce.titre }}</h5>
+                {% for dog in annonce.dogs %}
+                    <p class="card-text">Nom: {{ dog.nameOfDog }}</p>
+                {% endfor %}
+            </div>
+            <a href="#" class="btn btn-secondary">Voir Détails</a>
+        </div>
 
+    {% endfor %}
+    {{ knp_pagination_render(annonces) }}
 
 {% endblock %}

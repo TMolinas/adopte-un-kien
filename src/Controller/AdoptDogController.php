@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class AdoptDogController extends AbstractController
 {
@@ -26,10 +27,17 @@ class AdoptDogController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(): Response
+    public function home(Request $request, PaginatorInterface $paginator): Response
     {
         $repo = $this->getDoctrine()->getRepository(Annonce::class);
-        $annonces = $repo->findAll();
+        $donnees = $repo->findAll();
+
+        $annonces = $paginator->paginate(
+                    $donnees,
+                    $request->query->getInt('page', 1),
+                    5
+                );
+
         return $this->render('adopt_dog/home.html.twig', [
             'annonces' => $annonces]);
     }
