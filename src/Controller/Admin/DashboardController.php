@@ -27,9 +27,10 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         // redirect to some CRUD controller
-         $routeBuilder = $this->get(AdminUrlGenerator::class);
+        $routeBuilder = $this->get(AdminUrlGenerator::class);
 
-         return $this->redirect($routeBuilder->setController(ElveursSpaCrudController::class)->generateUrl()); }
+        return $this->redirect($routeBuilder->setController(ElveursSpaCrudController::class)->generateUrl());
+    }
 
     public function configureDashboard(): Dashboard
     {
@@ -38,17 +39,10 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Adopte Un Kien Corp.')
 
             // you can include HTML contents too (e.g. to link to an image)
-            ->setTitle('<img src="notion://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F65965ac1-0238-487c-824f-2d52acd6deeb%2Fspa.png?table=block&id=88102fe9-6880-4a5b-af85-9b75e1b7711d&spaceId=9a105652-3b03-4cae-8a5c-0ace828ec209&width=2000&userId=42038239-67ee-4634-8a7e-5c2a189ec1d9&cache=v2"> Adopte Un Kien <span class="text-small">Corp.</span>')
+            ->setTitle('<img height="50px" width="50px" src="https://upload.wikimedia.org/wikipedia/fr/thumb/0/00/Logo_de_la_SPA_(France).png/813px-Logo_de_la_SPA_(France).png"> Adopte Un Kien <span class="text-small">Corp.</span>')
 
             // the path defined in this method is passed  to the Twig asset() function
-            ->setFaviconPath('favicon.svg')
-
-            // the domain used by default is 'messages'
-            ->setTranslationDomain('my-custom-domain')
-
-            // there's no need to define the "text direction" explicitly because
-            // its default value is inferred dynamically from the user locale
-            ->setTextDirection('ltr')
+            //->setFaviconPath('favicon.svg')
 
             // set this option if you prefer the page content to span the entire
             // browser width, instead of the default design which sets a max width
@@ -56,7 +50,7 @@ class DashboardController extends AbstractDashboardController
 
             // set this option if you prefer the sidebar (which contains the main menu)
             // to be displayed as a narrow column instead of the default expanded design
-            ->renderSidebarMinimized()
+//            ->renderSidebarMinimized()
 
             // by default, all backend URLs include a signature hash. If a user changes any
             // query parameter (to "hack" the backend) the signature won't match and EasyAdmin
@@ -124,7 +118,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToDashboard('Ville', 'fa fa-home'),
             MenuItem::linkToExitImpersonation('Stop impersonation', 'fa fa-exit'),
 
-
-           ];
+       ];
     }
 }

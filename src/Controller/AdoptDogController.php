@@ -31,7 +31,16 @@ class AdoptDogController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Annonce::class);
         $annonces = $repo->findAll();
         return $this->render('adopt_dog/home.html.twig', [
-            'annonces' => $annonces]);
+            'annonces' => $annonces
+        ]);
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about()
+    {
+        return $this->render('adopt_dog/about.html.twig');
     }
 
     /**

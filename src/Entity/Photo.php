@@ -34,7 +34,7 @@ class Photo
     /**
      * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="photos")
      */
-    private $dog;
+    private $dogs;
 
 
     public function getId(): ?int
