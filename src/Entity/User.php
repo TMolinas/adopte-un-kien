@@ -51,18 +51,9 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Adresse::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToOne(targetEntity=Adresse::class, inversedBy="user", cascade={"persist", "remove"})
      */
     protected $adresse;
-
-
-
-    public function __construct()
-    {
-        $this->adresse = new ArrayCollection();
-        $this->annonces = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -104,32 +95,6 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    /**
-     * @return Collection|Adresse[]
-     */
-    public function getAdresse(): Collection
-    {
-        return $this->adresse;
-    }
-
-    public function addAdresse(Adresse $adress): self
-    {
-        if (!$this->adresse->contains($adress)) {
-            $this->adresse[] = $adress;
-        }
-
-        return $this;
-    }
-
-    public function removeAdresse(Adresse $adress): self
-    {
-        $this->adresse->removeElement($adress);
-
-        return $this;
-    }
-
-
 
     /**
      * @see UserInterface
@@ -183,5 +148,17 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getAdresse(): ?Adresse
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?Adresse $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
     }
 }

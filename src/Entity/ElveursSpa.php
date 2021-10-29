@@ -32,7 +32,7 @@ class ElveursSpa extends User
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="eleveurSpa")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $annonces;
+    private Collection $annonces;
 
     public function __construct()
     {
@@ -40,7 +40,7 @@ class ElveursSpa extends User
     }
 
 
-    public function getIsSpa(): ?bool
+    public function getIsSpa(): bool
     {
         return $this->isSpa;
     }
@@ -86,27 +86,27 @@ class ElveursSpa extends User
     /**
      * @return Collection|Annonce[]
      */
-    public function getAnnonces1(): Collection
+    public function getAnnonces(): Collection
     {
-        return $this->annonces1;
+        return $this->annonces;
     }
 
-    public function addAnnonces1(Annonce $annonces1): self
+    public function addAnnonces(Annonce $annonces): self
     {
-        if (!$this->annonces1->contains($annonces1)) {
-            $this->annonces1[] = $annonces1;
-            $annonces1->setEleveurSpa($this);
+        if (!$this->annonces->contains($annonces)) {
+            $this->annonces[] = $annonces;
+            $annonces->setEleveurSpa($this);
         }
 
         return $this;
     }
 
-    public function removeAnnonces1(Annonce $annonces1): self
+    public function removeAnnonces(Annonce $annonces): self
     {
-        if ($this->annonces1->removeElement($annonces1)) {
+        if ($this->annonces->removeElement($annonces)) {
             // set the owning side to null (unless already changed)
-            if ($annonces1->getEleveurSpa() === $this) {
-                $annonces1->setEleveurSpa(null);
+            if ($annonces->getEleveurSpa() === $this) {
+                $annonces->setEleveurSpa(null);
             }
         }
 
