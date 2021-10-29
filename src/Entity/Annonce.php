@@ -29,16 +29,18 @@ class Annonce
      */
     private $date;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $user;
+
 
     /**
      * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="annonce")
      */
     private $dogs;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ElveursSpa::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $eleveurSpa;
 
 
 
@@ -76,17 +78,7 @@ class Annonce
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
 
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
 
     /**
@@ -115,6 +107,18 @@ class Annonce
                 $dog->setAnnonce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEleveurSpa(): ?ElveursSpa
+    {
+        return $this->eleveurSpa;
+    }
+
+    public function setEleveurSpa(?ElveursSpa $eleveurSpa): self
+    {
+        $this->eleveurSpa = $eleveurSpa;
 
         return $this;
     }
