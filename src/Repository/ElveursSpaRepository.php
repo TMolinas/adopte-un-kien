@@ -20,7 +20,7 @@ class ElveursSpaRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return ElveursSpa[] Returns an array of ElveursSpa objects
+    //  * @return EleveursSpa[] Returns an array of EleveursSpa objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ElveursSpaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ElveursSpa
+    public function findOneBySomeField($value): ?EleveursSpa
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')

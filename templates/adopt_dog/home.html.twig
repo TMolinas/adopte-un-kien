@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {%  block body %}
     {% for annonce in annonces %}
         <div class="card" style="max-width: 18rem;">
@@ -16,6 +17,23 @@
         </div>
 
     {% endfor %}
-    {{ knp_pagination_render(annonces) }}
+    {{ knp_pagination_render(annonces) }
+
+        <br>
+
+
+        <h2>Les SPA</h2>
+
+        <div class="container">
+
+            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/0/00/Logo_de_la_SPA_%28France%29.png/813px-Logo_de_la_SPA_%28France%29.png"
+                 height="100px" width="100px">
+
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br>
+
+    </div>
+
 
 {% endblock %}

@@ -39,7 +39,16 @@ class AdoptDogController extends AbstractController
                 );
 
         return $this->render('adopt_dog/home.html.twig', [
-            'annonces' => $annonces]);
+            'annonces' => $annonces
+        ]);
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about()
+    {
+        return $this->render('adopt_dog/about.html.twig');
     }
 
     /**
