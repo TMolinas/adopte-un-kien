@@ -40,7 +40,7 @@ class ElveursSpa extends User
     }
 
 
-    public function getIsSpa(): ?bool
+    public function getIsSpa(): bool
     {
         return $this->isSpa;
     }
