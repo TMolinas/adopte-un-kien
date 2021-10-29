@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Adoptant;
+use App\Entity\Annonce;
 use App\Form\AdoptantType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
