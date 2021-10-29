@@ -13,15 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdoptDogController extends AbstractController
 {
-    /**
-     * @Route("/adopt/dog", name="adopt_dog")
-     */
-    public function index(): Response
-    {
-        return $this->render('adopt_dog/index.html.twig', [
-            'controller_name' => 'AdoptDogController',
-        ]);
-    }
+//    /**
+//     * @Route("/adopt/dog", name="adopt_dog")
+//     */
+//    public function index(): Response
+//    {
+//        return $this->render('adopt_dog/index.html.twig', [
+//            'controller_name' => 'AdoptDogController',
+//        ]);
+//    }
 
     /**
      * @Route("/", name="home")
@@ -31,7 +31,16 @@ class AdoptDogController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Annonce::class);
         $annonces = $repo->findAll();
         return $this->render('adopt_dog/home.html.twig', [
-            'annonces' => $annonces]);
+            'annonces' => $annonces
+        ]);
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about()
+    {
+        return $this->render('adopt_dog/about.html.twig');
     }
 
     /**

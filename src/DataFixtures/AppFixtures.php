@@ -12,6 +12,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        //Photos fixtures
         $photo1 = new Photo();
         $photo1->setNameofDog('labrador');
         $photo1->setImgUrl('https://images.unsplash.com/photo-1599744975877-53aaa14cf55f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2hpZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
@@ -59,6 +60,7 @@ class AppFixtures extends Fixture
         $manager->persist($photo8);
         $manager->persist($photo9);
 
+        // Dog fixtures
         $dog1 = new Dog();
         $dog1->setNameOfDog('Chien 1');
         $dog1->setBreed('labrador');
@@ -122,6 +124,7 @@ class AppFixtures extends Fixture
         $dog9->addPhoto($photo9);
         $manager->persist($dog9);
 
+        // Annonces fixtures
         $annonce1 = new Annonce();
         $annonce1->setTitre('Annonce 2 chiens');
         $annonce1->setDate(new \Datetime());
