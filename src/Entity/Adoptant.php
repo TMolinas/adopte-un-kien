@@ -15,7 +15,7 @@ class Adoptant extends User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $non;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -24,14 +24,14 @@ class Adoptant extends User
 
 
 
-    public function getNon(): ?string
+    public function getNom(): ?string
     {
-        return $this->non;
+        return $this->nom;
     }
 
-    public function setNon(string $non): self
+    public function setNom(string $nom): self
     {
-        $this->non = $non;
+        $this->nom = $nom;
 
         return $this;
     }

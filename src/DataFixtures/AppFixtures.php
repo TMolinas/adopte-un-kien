@@ -3,7 +3,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\Annonce;
+use App\Entity\Adoptant;
 use App\Entity\Photo;
+use App\Entity\ElveursSpa;
 use App\Entity\Dog;
 use App\Entity\Ville;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,6 +15,82 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+
+        $userAdoptant1 = new Adoptant();
+        $userAdoptant1->setUserName('userAdoptant1');
+        $userAdoptant1->setEmail('userAdoptant1@gmail.com');
+        $roleAdoptant1 = [];
+        $roleAdoptant1[] = 'ROLE_USER';
+        $roleAdoptant1[] = 'ROLE_ADOPTANT';
+        $userAdoptant1->setRoles($roleAdoptant1);
+        $userAdoptant1->setPassword('password');
+        $userAdoptant1->setNom('user1');
+        $userAdoptant1->setTelephone('0251611165');
+        $userAdoptant1->setPrenom('adoptant1');
+
+        $manager->persist($userAdoptant1);
+
+
+        $userAdoptant2 = new Adoptant();
+        $userAdoptant2->setUserName('userAdoptant2');
+        $userAdoptant2->setEmail('userAdoptant2@gmail.com');
+        $roleAdoptant2 = [];
+        $roleAdoptant2[] = 'ROLE_USER';
+        $roleAdoptant2[] = 'ROLE_ADOPTANT';
+        $userAdoptant2->setRoles($roleAdoptant1);
+        $userAdoptant2->setPassword('password');
+        $userAdoptant2->setNom('user2');
+        $userAdoptant2->setTelephone('0251611165');
+        $userAdoptant2->setPrenom('adoptant2');
+
+        $manager->persist($userAdoptant2);
+
+        $userEleveurSpa1 = new ElveursSpa();
+        $userEleveurSpa1->setUserName('userEleveurSpa1');
+        $userEleveurSpa1->setEmail('userEleveurSpa1@gmail.com');
+        $roleEleveur1 = [];
+        $roleEleveur1[] = 'ROLE_USER';
+        $roleEleveur1[] = 'ROLE_ANNONCEUR';
+        $userEleveurSpa1->setRoles($roleEleveur1);
+        $userEleveurSpa1->setIsSpa('true');
+        $userEleveurSpa1->setTelephone('0251611165');
+        $userEleveurSpa1->setPassword('password');
+        $userEleveurSpa1->setNameSociety('userEleveurSpa1');
+        $userEleveurSpa1->setSiret('241245423432');
+
+        $manager->persist($userEleveurSpa1);
+
+        $userEleveurSpa2 = new ElveursSpa();
+        $userEleveurSpa2->setUserName('userEleveurSpa2');
+        $userEleveurSpa2->setEmail('userEleveurSpa2@gmail.com');
+        $roleEleveur2 = [];
+        $roleEleveur2[] = 'ROLE_USER';
+        $roleEleveur2[] = 'ROLE_ANNONCEUR';
+        $userEleveurSpa2->setRoles($roleEleveur2);
+        $userEleveurSpa2->setIsSpa('true');
+        $userEleveurSpa2->setTelephone('0251611165');
+        $userEleveurSpa2->setPassword('password');
+        $userEleveurSpa2->setNameSociety('userEleveurSpa2');
+        $userEleveurSpa2->setSiret('241515315');
+
+        $manager->persist($userEleveurSpa2);
+
+        $userEleveurSpa3 = new ElveursSpa();
+        $userEleveurSpa3->setUserName('userEleveurSpa3');
+        $userEleveurSpa3->setEmail('userEleveurSpa3@gmail.com');
+        $roleEleveur3 = [];
+        $roleEleveur3[] = 'ROLE_USER';
+        $roleEleveur3[] = 'ROLE_ANNONCEUR';
+        $userEleveurSpa3->setRoles($roleEleveur1);
+        $userEleveurSpa3->setIsSpa('true');
+        $userEleveurSpa3->setTelephone('0251611165');
+        $userEleveurSpa3->setPassword('password');
+        $userEleveurSpa3->setNameSociety('userEleveurSpa3');
+        $userEleveurSpa3->setSiret('24152548685');
+
+        $manager->persist($userEleveurSpa3);
+
+
         //Photos fixtures
         $photo1 = new Photo();
         $photo1->setNameofDog('labrador');
@@ -131,36 +209,42 @@ class AppFixtures extends Fixture
         $annonce1->setDate(new \Datetime());
         $annonce1->addDog($dog1);
         $annonce1->addDog($dog2);
+        $annonce1->setEleveurSpa($userEleveurSpa1);
         $manager->persist($annonce1);
 
         $annonce2 = new Annonce();
         $annonce2->setTitre('Annonce n°2');
         $annonce2->setDate(new \Datetime());
         $annonce2->addDog($dog3);
+        $annonce2->setEleveurSpa($userEleveurSpa2);
         $manager->persist($annonce2);
 
         $annonce3 = new Annonce();
         $annonce3->setTitre('Annonce n°3');
         $annonce3->setDate(new \Datetime());
         $annonce3->addDog($dog4);
+        $annonce3->setEleveurSpa($userEleveurSpa3);
         $manager->persist($annonce3);
 
         $annonce4 = new Annonce();
         $annonce4->setTitre('Annonce n°4');
         $annonce4->setDate(new \Datetime());
         $annonce4->addDog($dog5);
+        $annonce4->setEleveurSpa($userEleveurSpa1);
         $manager->persist($annonce4);
 
         $annonce5 = new Annonce();
         $annonce5->setTitre('Annonce n°5');
         $annonce5->setDate(new \Datetime());
         $annonce5->addDog($dog6);
+        $annonce5->setEleveurSpa($userEleveurSpa2);
         $manager->persist($annonce5);
 
         $annonce6 = new Annonce();
         $annonce6->setTitre('Annonce n°6');
         $annonce6->setDate(new \Datetime());
         $annonce6->addDog($dog7);
+        $annonce6->setEleveurSpa($userEleveurSpa1);
         $manager->persist($annonce6);
 
         $annonce7 = new Annonce();
@@ -168,6 +252,7 @@ class AppFixtures extends Fixture
         $annonce7->setDate(new \Datetime());
         $annonce7->addDog($dog8);
         $annonce7->addDog($dog9);
+        $annonce7->setEleveurSpa($userEleveurSpa3);
         $manager->persist($annonce7);
 
 
