@@ -12,7 +12,7 @@
                     <p class="card-text">Nom: {{ dog.nameOfDog }}</p>
                 {% endfor %}
             </div>
-            <a href="#" class="btn btn-secondary">Voir Détails</a>
+            <a href="{{ path('annonceById', {'id' : annonce.id}) }}" class="btn btn-secondary">Voir Détails</a>
         </div>
 
     {% endfor %}
