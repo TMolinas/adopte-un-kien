@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Annonce;
 use App\Entity\Photo;
 use App\Entity\Dog;
+use App\Entity\Ville;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -170,8 +171,48 @@ class AppFixtures extends Fixture
         $manager->persist($annonce7);
 
 
+        $ville1= new Ville();
+        $ville1->setCityName('paris');
+        $manager->persist($ville1);
+
+        $ville2= new Ville();
+        $ville2->setCityName('bordeaux');
+        $manager->persist($ville2);
+
+        $ville3= new Ville();
+        $ville3->setCityName('marseillBB');
+        $manager->persist($ville3);
+
+        $ville4= new Ville();
+        $ville4->setCityName('vichy');
+        $manager->persist($ville4);
+
+        $ville5= new Ville();
+        $ville5->setCityName('Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch');
+        $manager->persist($ville5);
+
+
+        $ville5= new Ville();
+        $ville5->setCityName('renne');
+        $manager->persist($ville5);
+
+        $ville6= new Ville();
+        $ville6->setCityName('obiwankenobecity');
+        $manager->persist($ville6);
+
+        $ville7= new Ville();
+        $ville7->setCityName('moncul');
+        $manager->persist($ville7);
+
+
+
+
+
 
         $manager->flush();
+
+
+
 
 
 

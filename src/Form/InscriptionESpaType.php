@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,8 +26,8 @@ class InscriptionESpaType extends AbstractType
                 'required'=>false,
             ])
             ->add('nameSociety',TextType::class,['label'=> 'entrez le nom de votre societer'])
-            ->add('siret',TextType::class,['label'=> 'entrez votre numero de siret'])
-            ->add('adresse',TextType::class,['label'=> 'entrez votre adresse'])
+            ->add('siret',NumberType::class,['label'=> 'entrez votre numero de siret'])
+            ->add('adresse',AdresseType::class)
             ->add('submit',SubmitType::class);
 
 
