@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\ElveursSpa;
 use App\Form\InscriptionESpaType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,9 +26,21 @@ class InscriptionESpaController extends AbstractController
     /**
      * @Route("/inscription_e_spa/new", name="inscription_eleveur")
      */
-    public function new(): Response
-    {   $inscriptionESpa= new ElveursSpa();
+    public function new(Request $request, EntityManagerInterface $em): Response
+
+
+    {
+        $inscriptionESpa= new ElveursSpa();
         $form=$this->createForm(InscriptionESpaType::class,$inscriptionESpa);
+
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $em->persist($inscriptionESpa);
+            $em->flush();
+
+            return  $this->redirectToRoute ('about');
+        }
 
         return $this->render('inscription_e_spa/registrationElveur.html.twig',[
             'form'=>$form->createView(),

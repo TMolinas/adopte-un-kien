@@ -40,4 +40,11 @@ class Adoptant extends User
     {
         return $this->prenom;
     }
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
 }
