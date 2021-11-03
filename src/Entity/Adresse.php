@@ -40,10 +40,10 @@ class Adresse
      */
     private $user;
 
-//    public function getId(): ?int
-//    {
-//        return $this->id;
-//    }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getNuberInStreet(): ?string
     {
