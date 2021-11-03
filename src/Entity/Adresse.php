@@ -12,12 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Adresse
 {
-//    /**
-//     * @ORM\Id
-//     * @ORM\GeneratedValue
-//     * @ORM\Column(type="integer")
-//     */
-//    private $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=10)
