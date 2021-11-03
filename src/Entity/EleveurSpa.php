@@ -34,9 +34,15 @@ class EleveurSpa extends User
      */
     private Collection $annonces;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="eleveur", orphanRemoval=true)
+     */
+    private $adoptionRequests;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->adoptionRequests = new ArrayCollection();
     }
 
 
@@ -107,6 +113,36 @@ class EleveurSpa extends User
             // set the owning side to null (unless already changed)
             if ($annonces->getEleveurSpa() === $this) {
                 $annonces->setEleveurSpa(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AdoptionRequest[]
+     */
+    public function getAdoptionRequests(): Collection
+    {
+        return $this->adoptionRequests;
+    }
+
+    public function addAdoptionRequest(AdoptionRequest $adoptionRequest): self
+    {
+        if (!$this->adoptionRequests->contains($adoptionRequest)) {
+            $this->adoptionRequests[] = $adoptionRequest;
+            $adoptionRequest->setEleveur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdoptionRequest(AdoptionRequest $adoptionRequest): self
+    {
+        if ($this->adoptionRequests->removeElement($adoptionRequest)) {
+            // set the owning side to null (unless already changed)
+            if ($adoptionRequest->getEleveur() === $this) {
+                $adoptionRequest->setEleveur(null);
             }
         }
 

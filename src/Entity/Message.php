@@ -34,6 +34,11 @@ class Message
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=AdoptionRequest::class, inversedBy="messages")
+     */
+    private $adoptionRequest;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -83,6 +88,18 @@ class Message
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getAdoptionRequest(): ?AdoptionRequest
+    {
+        return $this->adoptionRequest;
+    }
+
+    public function setAdoptionRequest(?AdoptionRequest $adoptionRequest): self
+    {
+        $this->adoptionRequest = $adoptionRequest;
 
         return $this;
     }
