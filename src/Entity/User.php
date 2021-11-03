@@ -59,17 +59,16 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="recipient", orphanRemoval=true)
      */
-    private $sender;
+    protected $sender;
 
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender", orphanRemoval=true)
      */
-    private $messages;
+    protected $messages;
 
 
     public function __construct()
     {
-        $this->role = new ArrayCollection();
         $this->sender = new ArrayCollection();
         $this->messages = new ArrayCollection();
     }
@@ -241,5 +240,8 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
+    public function getUserIdentifier(): string
+    {
+        return $this->getUserName();
+    }
 }
