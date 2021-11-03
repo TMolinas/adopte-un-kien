@@ -36,14 +36,9 @@ class Adresse
     private $ville;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="adresse")
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="adresse", cascade={"persist", "remove"})
      */
-    private $users;
-
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+    private $user;
 
 //    public function getId(): ?int
 //    {
@@ -86,32 +81,24 @@ class Adresse
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
+    public function getUser(): ?User
     {
-        return $this->users;
+        return $this->user;
     }
 
-    public function addUser(User $user): self
+    public function setUser(?User $user): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setAdresse(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getAdresse() !== $this) {
             $user->setAdresse($this);
         }
 
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getAdresse() === $this) {
-                $user->setAdresse(null);
-            }
-        }
+        $this->user = $user;
 
         return $this;
     }

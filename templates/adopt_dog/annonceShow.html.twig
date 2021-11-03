@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+
+    <br><br>
+
+    <div class="container d-flex">
+        <div class="carousel">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 25em">
+            <div class="carousel-inner">
+
+
+                {% set firstPhoto = true %}
+
+                {% for photo in annonce.firstPhotos %}
+                    {% if firstPhoto %}
+                        <div class="carousel-item active">
+                            <img src="{{ photo.imgUrl }}" class="d-block w-100" alt="...">
+                        </div>
+                        {% set firstPhoto = false %}
+                    {% endif %}
+                    {% if not firstPhoto %}
+                        <div class="carousel-item">
+                            <img src="{{ photo.imgUrl }}" class="d-block w-100" alt="...">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+
+
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+        </div>
+        <div class="card">
+            <div class="card-header">
+                {{ annonce.titre }}
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    {% for dog in annonce.dogs %}
+                        <p> Nom : {{ dog.nameOfDog }}</p>
+                        <p>Race: {{ dog.breed }}</p>
+                        {% if dog.lof %}
+                            <p>Loffé : oui</p>
+                        {% endif %}
+                        {% if dog.description %}
+                            <p> {{ dog.description }}</p>
+                        {% endif %}
+                        {% if dog.sociability %}
+                            <p> {{ dog.sociability }}</p>
+                        {% endif %}
+                        {% if dog.canBeAdopted %}
+                            <p>Ce chien est adoptable: poster un message pour</p>
+                        {% endif %}
+                        {% if not dog.canBeAdopted %}
+                            <p>Vous ne pouvez pas adopter pour cette annonce</p>
+                        {% endif %}
+                    {% endfor %}
+                    {% if annonce.eleveurSpa %}
+
+                        <p>Information du Donneur:</p>
+                        <p> Nom de société: {{ annonce.eleveurSpa.nameSociety }}</p>
+                        {% if annonce.eleveurSpa.siret %}
+                            <p> Numero de siret: {{ annonce.eleveurSpa.siret }}</p>
+                        {% endif %}
+                    {% endif %}
+                    <footer class="blockquote-footer">{{ annonce.date | date("d/m/Y") }}</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+    </div>
+
+        <br>
+
+
+
+        <br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

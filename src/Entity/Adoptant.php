@@ -12,12 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Adoptant extends User
 {
-
-
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $non;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -25,25 +23,26 @@ class Adoptant extends User
     private $prenom;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="adoptant")
+     * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="adoptant", orphanRemoval=true)
      */
-    private $users;
+    private $eleveur;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        parent::__construct();
+        $this->eleveur = new ArrayCollection();
     }
 
 
 
-    public function getNon(): ?string
+    public function getNom(): ?string
     {
-        return $this->non;
+        return $this->nom;
     }
 
-    public function setNon(string $non): self
+    public function setNom(string $nom): self
     {
-        $this->non = $non;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -52,34 +51,50 @@ class Adoptant extends User
     {
         return $this->prenom;
     }
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
 
     /**
-     * @return Collection|User[]
+     * @return Collection|AdoptionRequest[]
      */
-    public function getUsers(): Collection
+    public function getEleveur(): Collection
     {
-        return $this->users;
+        return $this->eleveur;
     }
 
-    public function addUser(User $user): self
+    public function addEleveur(AdoptionRequest $eleveur): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addAdoptant($this);
+        if (!$this->eleveur->contains($eleveur)) {
+            $this->eleveur[] = $eleveur;
+            $eleveur->setAdoptant($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeEleveur(AdoptionRequest $eleveur): self
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeAdoptant($this);
+        if ($this->eleveur->removeElement($eleveur)) {
+            // set the owning side to null (unless already changed)
+            if ($eleveur->getAdoptant() === $this) {
+                $eleveur->setAdoptant(null);
+            }
         }
 
         return $this;
     }
 
+    public function getRoles(): array
+    {
+        $roles = parent::getRoles();
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_ADOPTANT';
 
-     
+        return array_unique($roles);
+    }
+
 }

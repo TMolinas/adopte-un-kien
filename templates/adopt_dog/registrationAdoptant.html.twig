@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="container">
+        {{ form_start(formAdoptant) }}
+        {{ form_widget(formAdoptant) }}
+        <input class="btn btn-secondary" type="submit" value="Enregistrer">
+        {{ form_end(formAdoptant) }}
+    </div>
+
+
+{% endblock %}

@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"admin" = "Admin", "adoptant" = "Adoptant", "elveursSpa" = "ElveursSpa"})
+ * @ORM\DiscriminatorMap({"admin" = "Admin", "adoptant" = "Adoptant", "eleveurSpa" = "EleveurSpa"})
  */
 abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -35,7 +35,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected $email;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15, nullable=true)
      */
     protected $telephone;
 
@@ -51,37 +51,22 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity=adresse::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity=Adresse::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     protected $adresse;
 
+ 
     /**
-     * @ORM\ManyToMany(targetEntity=ElveursSpa::class, inversedBy="users")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender", orphanRemoval=true)
      */
-    protected $eleversSpa;
+    protected $messages;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=adresse::class, inversedBy="users")
-     */
-    protected $adress;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Adoptant::class, inversedBy="users")
-     */
-    protected $adoptant;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user")
-     */
-    protected $annonces;
 
     public function __construct()
     {
-        $this->EleversSpa = new ArrayCollection();
-        $this->adress = new ArrayCollection();
-        $this->adoptant = new ArrayCollection();
-        $this->annonces = new ArrayCollection();
+        $this->sender = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -123,130 +108,6 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->telephone = $telephone;
 
         return $this;
-    }
-
-    public function getAdresse(): ?adresse
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(?adresse $adresse): self
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ElveursSpa[]
-     */
-    public function getEleversSpa(): Collection
-    {
-        return $this->EleversSpa;
-    }
-
-    public function addEleversSpa(ElveursSpa $eleversSpa): self
-    {
-        if (!$this->EleversSpa->contains($eleversSpa)) {
-            $this->EleversSpa[] = $eleversSpa;
-        }
-
-        return $this;
-    }
-
-    public function removeEleversSpa(ElveursSpa $eleversSpa): self
-    {
-        $this->EleversSpa->removeElement($eleversSpa);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|adresse[]
-     */
-    public function getAdress(): Collection
-    {
-        return $this->adress;
-    }
-
-    public function addAdress(adresse $adress): self
-    {
-        if (!$this->adress->contains($adress)) {
-            $this->adress[] = $adress;
-        }
-
-        return $this;
-    }
-
-    public function removeAdress(adresse $adress): self
-    {
-        $this->adress->removeElement($adress);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Adoptant[]
-     */
-    public function getAdoptant(): Collection
-    {
-        return $this->adoptant;
-    }
-
-    public function addAdoptant(Adoptant $adoptant): self
-    {
-        if (!$this->adoptant->contains($adoptant)) {
-            $this->adoptant[] = $adoptant;
-        }
-
-        return $this;
-    }
-
-    public function removeAdoptant(Adoptant $adoptant): self
-    {
-        $this->adoptant->removeElement($adoptant);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Annonce[]
-     */
-    public function getAnnonces(): Collection
-    {
-        return $this->annonces;
-    }
-
-    public function addAnnonce(Annonce $annonce): self
-    {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-            $annonce->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnnonce(Annonce $annonce): self
-    {
-        if ($this->annonces->removeElement($annonce)) {
-            // set the owning side to null (unless already changed)
-            if ($annonce->getUser() === $this) {
-                $annonce->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
     }
 
     /**
@@ -301,5 +162,82 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getAdresse(): ?Adresse
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?Adresse $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getSender(): Collection
+    {
+        return $this->sender;
+    }
+
+    public function addSender(Message $sender): self
+    {
+        if (!$this->sender->contains($sender)) {
+            $this->sender[] = $sender;
+            $sender->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSender(Message $sender): self
+    {
+        if ($this->sender->removeElement($sender)) {
+            // set the owning side to null (unless already changed)
+            if ($sender->getRecipient() === $this) {
+                $sender->setRecipient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getSender() === $this) {
+                $message->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->getUserName();
     }
 }

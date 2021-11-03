@@ -15,15 +15,9 @@ class AdoptantType extends AbstractType
             ->add('userName')
             ->add('email')
             ->add('telephone')
-            ->add('roles')
             ->add('password')
             ->add('non')
             ->add('prenom')
-            ->add('adresse')
-            ->add('EleversSpa')
-            ->add('adress')
-            ->add('adoptant')
-            ->add('users')
         ;
     }
 

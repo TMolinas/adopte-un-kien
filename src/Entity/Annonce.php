@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,15 +29,31 @@ class Annonce
      */
     private $date;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
-     */
-    private $user;
+
 
     /**
-     * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="annonces")
+     * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="annonce")
      */
-    private $dog;
+    private $dogs;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=EleveurSpa::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $eleveurSpa;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="annonce")
+     */
+    private $adoptionRequests;
+
+
+
+    public function __construct()
+    {
+        $this->dogs = new ArrayCollection();
+        $this->adoptionRequests = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -66,26 +84,104 @@ class Annonce
         return $this;
     }
 
-    public function getUser(): ?User
+
+
+
+    /**
+     * @return Collection|Dog[]
+     */
+    public function getDogs(): Collection
     {
-        return $this->user;
+        return $this->dogs;
     }
 
-    public function setUser(?User $user): self
+    public function addDog(Dog $dog): self
     {
-        $this->user = $user;
+        if (!$this->dogs->contains($dog)) {
+            $this->dogs[] = $dog;
+            $dog->setAnnonce($this);
+        }
 
         return $this;
     }
 
-    public function getDog(): ?Dog
+    public function removeDog(Dog $dog): self
     {
-        return $this->dog;
+        if ($this->dogs->removeElement($dog)) {
+            // set the owning side to null (unless already changed)
+            if ($dog->getAnnonce() === $this) {
+                $dog->setAnnonce(null);
+            }
+        }
+
+        return $this;
     }
 
-    public function setDog(?Dog $dog): self
+    public function getEleveurSpa(): ?EleveurSpa
     {
-        $this->dog = $dog;
+        return $this->eleveurSpa;
+    }
+
+    public function setEleveurSpa(?EleveurSpa $eleveurSpa): self
+    {
+        $this->eleveurSpa = $eleveurSpa;
+
+        return $this;
+    }
+
+    public function getFirstPhoto(): ?Photo
+    {
+        foreach ($this->getDogs() as $dog) {
+            $photo = $dog->getPhotos()->first();
+            if ($photo) {
+                return $photo;
+            }
+        }
+
+        return null;
+    }
+
+    public function getFirstPhotos(): ArrayCollection
+    {
+        $ret = new ArrayCollection();
+        foreach ($this->getDogs() as $dog) {
+            foreach($dog->getPhotos() as $photo) {
+            if ($photo) {
+                $ret->add($photo);
+            }
+            }
+        }   
+
+        return $ret;
+        
+    }
+
+    /**
+     * @return Collection|AdoptionRequest[]
+     */
+    public function getAdoptionRequests(): Collection
+    {
+        return $this->adoptionRequests;
+    }
+
+    public function addAdoptionRequest(AdoptionRequest $adoptionRequest): self
+    {
+        if (!$this->adoptionRequests->contains($adoptionRequest)) {
+            $this->adoptionRequests[] = $adoptionRequest;
+            $adoptionRequest->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdoptionRequest(AdoptionRequest $adoptionRequest): self
+    {
+        if ($this->adoptionRequests->removeElement($adoptionRequest)) {
+            // set the owning side to null (unless already changed)
+            if ($adoptionRequest->getAnnonce() === $this) {
+                $adoptionRequest->setAnnonce(null);
+            }
+        }
 
         return $this;
     }
