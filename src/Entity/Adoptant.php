@@ -87,7 +87,7 @@ class Adoptant extends User
 
         return $this;
     }
-s
+
     public function getRoles(): array
     {
         $roles = parent::getRoles();

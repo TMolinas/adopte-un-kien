@@ -46,6 +46,11 @@ class AdoptionRequest
      */
     private $isAccepted;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="adoptionRequests")
+     */
+    private $annonce;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -130,6 +135,18 @@ class AdoptionRequest
     public function setIsAccepted(bool $isAccepted): self
     {
         $this->isAccepted = $isAccepted;
+
+        return $this;
+    }
+
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Annonce $annonce): self
+    {
+        $this->annonce = $annonce;
 
         return $this;
     }
