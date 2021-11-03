@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Admin;
+use App\Entity\Adresse;
 use App\Entity\Annonce;
 use App\Entity\Adoptant;
 use App\Entity\Photo;
@@ -10,20 +12,25 @@ use App\Entity\Dog;
 use App\Entity\Ville;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
 
         $userAdoptant1 = new Adoptant();
         $userAdoptant1->setUserName('userAdoptant1');
         $userAdoptant1->setEmail('userAdoptant1@gmail.com');
-        $roleAdoptant1 = [];
-        $roleAdoptant1[] = 'ROLE_USER';
-        $roleAdoptant1[] = 'ROLE_ADOPTANT';
-        $userAdoptant1->setRoles($roleAdoptant1);
-        $userAdoptant1->setPassword('password');
+        $pwd = $this->hasher->hashPassword($userAdoptant1, 'password');
+        $userAdoptant1->setPassword($pwd);
         $userAdoptant1->setNom('user1');
         $userAdoptant1->setTelephone('0251611165');
         $userAdoptant1->setPrenom('adoptant1');
@@ -34,11 +41,8 @@ class AppFixtures extends Fixture
         $userAdoptant2 = new Adoptant();
         $userAdoptant2->setUserName('userAdoptant2');
         $userAdoptant2->setEmail('userAdoptant2@gmail.com');
-        $roleAdoptant2 = [];
-        $roleAdoptant2[] = 'ROLE_USER';
-        $roleAdoptant2[] = 'ROLE_ADOPTANT';
-        $userAdoptant2->setRoles($roleAdoptant1);
-        $userAdoptant2->setPassword('password');
+        $pwd = $this->hasher->hashPassword($userAdoptant2, 'password');
+        $userAdoptant2->setPassword($pwd);
         $userAdoptant2->setNom('user2');
         $userAdoptant2->setTelephone('0251611165');
         $userAdoptant2->setPrenom('adoptant2');
@@ -54,7 +58,8 @@ class AppFixtures extends Fixture
         $userEleveurSpa1->setRoles($roleEleveur1);
         $userEleveurSpa1->setIsSpa('true');
         $userEleveurSpa1->setTelephone('0251611165');
-        $userEleveurSpa1->setPassword('password');
+        $pwd = $this->hasher->hashPassword($userEleveurSpa1, 'password');
+        $userEleveurSpa1->setPassword($pwd);
         $userEleveurSpa1->setNameSociety('userEleveurSpa1');
         $userEleveurSpa1->setSiret('241245423432');
 
@@ -69,7 +74,8 @@ class AppFixtures extends Fixture
         $userEleveurSpa2->setRoles($roleEleveur2);
         $userEleveurSpa2->setIsSpa('true');
         $userEleveurSpa2->setTelephone('0251611165');
-        $userEleveurSpa2->setPassword('password');
+        $pwd = $this->hasher->hashPassword($userEleveurSpa2, 'password');
+        $userEleveurSpa2->setPassword($pwd);
         $userEleveurSpa2->setNameSociety('userEleveurSpa2');
         $userEleveurSpa2->setSiret('241515315');
 
@@ -84,7 +90,8 @@ class AppFixtures extends Fixture
         $userEleveurSpa3->setRoles($roleEleveur1);
         $userEleveurSpa3->setIsSpa('true');
         $userEleveurSpa3->setTelephone('0251611165');
-        $userEleveurSpa3->setPassword('password');
+        $pwd = $this->hasher->hashPassword($userEleveurSpa3, 'password');
+        $userEleveurSpa3->setPassword($pwd);
         $userEleveurSpa3->setNameSociety('userEleveurSpa3');
         $userEleveurSpa3->setSiret('24152548685');
 
@@ -291,6 +298,20 @@ class AppFixtures extends Fixture
 
 
 
+        $admin = new Admin();
+        $admin->setEmail('admin@admin.admin');
+        $admin->setUserName('admin');
+        $pwd = $this->hasher->hashPassword($admin, 'admin');
+        $admin->setPassword($pwd);
+        $admin->setTelephone('0000000000');
+        $adresse = new Adresse();
+        $adresse->setNameOf7Street('Bouh');
+        $adresse->setNuberInStreet('10');
+        $adresse->setVille($ville1);
+        $admin->setAdresse($adresse);
+
+        $manager->persist($adresse);
+        $manager->persist($admin);
 
 
 
