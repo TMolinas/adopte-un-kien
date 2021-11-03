@@ -3,7 +3,8 @@
 {% block title %}inscription des eleveurs et/ou Spa{% endblock %}
 
 {% block body %}
-    <div class="container" >
+    <br>
+    <div class="container col-9" >
                     <h3 >Bienvenue sur le formulair d'inscription professionnel</h3>
 <div class="container">
 
@@ -17,6 +18,7 @@
     {{ form_row(form.password) }}
     {{ form_row(form.nameSociety) }}
     {{ form_row(form.siret) }}
+    Entrez votre
     {{ form_row(form.adresse) }}
         {{ form_row(form.isSpa) }}
     {% if form.submit is defined %}

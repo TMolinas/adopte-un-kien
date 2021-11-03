@@ -87,7 +87,22 @@ class AdoptDogController extends AbstractController
         return $this->render('adopt_dog/annonceShow.html.twig', [
         'annonce' => $annonce]);
      }
+    /**
+     * @Route("/eleveurs", name="eleveurs")
+     */
+    public function eleveurs()
+    {
+        return $this->render('adopt_dog/eleveurs.html.twig');
+    }
 
+
+    /**
+     * @Route("/spa", name="spa")
+     */
+    public function spa()
+    {
+        return $this->render('adopt_dog/spa.html.twig');
+    }
 
 
     /**
