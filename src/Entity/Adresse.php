@@ -12,12 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Adresse
 {
-//    /**
-//     * @ORM\Id
-//     * @ORM\GeneratedValue
-//     * @ORM\Column(type="integer")
-//     */
-//    private $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -40,10 +40,10 @@ class Adresse
      */
     private $user;
 
-//    public function getId(): ?int
-//    {
-//        return $this->id;
-//    }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getNuberInStreet(): ?string
     {
