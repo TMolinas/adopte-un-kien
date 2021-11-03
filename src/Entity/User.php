@@ -56,11 +56,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     protected $adresse;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="recipient", orphanRemoval=true)
-     */
-    protected $sender;
-
+ 
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender", orphanRemoval=true)
      */
