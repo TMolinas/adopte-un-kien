@@ -62,6 +62,8 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     protected $messages;
 
+    protected $plainPassword;
+
 
     public function __construct()
     {
@@ -239,5 +241,21 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return $this->getUserName();
+    }
+
+    /**
+     * @return string | null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 }

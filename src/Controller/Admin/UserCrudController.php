@@ -17,12 +17,6 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            ->setEntityPermission('ROLE_ADMIN')
-        ;
-    }
 
     public function configureFields(string $pageName): iterable
     {
@@ -30,7 +24,8 @@ class UserCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('userName'),
             EmailField::new('email'),
-            TextField::new('password')->hideOnIndex(),
+            TextField::new('plainPassword')->hideOnIndex(),
         ];
     }
+
 }
