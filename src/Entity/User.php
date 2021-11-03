@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"admin" = "Admin", "adoptant" = "Adoptant", "elveursSpa" = "ElveursSpa"})
+ * @ORM\DiscriminatorMap({"admin" = "Admin", "adoptant" = "Adoptant", "eleveurSpa" = "EleveurSpa"})
  */
 abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -59,7 +59,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="recipient", orphanRemoval=true)
      */
-    private $sender;
+    protected $sender;
 
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender", orphanRemoval=true)

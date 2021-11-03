@@ -8,7 +8,7 @@ use App\Entity\Adresse;
 use App\Entity\Annonce;
 use App\Entity\Departement;
 use App\Entity\Dog;
-use App\Entity\ElveursSpa;
+use App\Entity\EleveurSpa;
 use App\Entity\Photo;
 use App\Entity\Ville;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -29,7 +29,7 @@ class DashboardController extends AbstractDashboardController
         // redirect to some CRUD controller
         $routeBuilder = $this->get(AdminUrlGenerator::class);
 
-        return $this->redirect($routeBuilder->setController(ElveursSpaCrudController::class)->generateUrl());
+        return $this->redirect($routeBuilder->setController(EleveurSpaCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
@@ -94,29 +94,14 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Dog'),
             MenuItem::linkToCrud('Dog', 'fa fa-tags', Dog::class),
 
-            MenuItem::section('ElveursSpa'),
-            MenuItem::linkToCrud('ElveursSpa', 'fa fa-tags', ElveursSpa::class),
+            MenuItem::section('EleveurSpa'),
+            MenuItem::linkToCrud('EleveurSpa', 'fa fa-tags', EleveurSpa::class),
 
             MenuItem::section('Photo'),
             MenuItem::linkToCrud('Photo', 'fa fa-tags', Photo::class),
 
             MenuItem::section('Ville'),
             MenuItem::linkToCrud('Ville', 'fa fa-tags', Ville::class),
-
-
-
-            MenuItem::section('ElveursSpa'),
-            MenuItem::linkToDashboard('ElveursSpa', 'fa fa-home'),
-            MenuItem::linkToExitImpersonation('Stop impersonation', 'fa fa-exit'),
-
-            MenuItem::section('Photo'),
-            MenuItem::linkToDashboard('Photo', 'fa fa-home'),
-            MenuItem::linkToExitImpersonation('Stop impersonation', 'fa fa-exit'),
-
-
-            MenuItem::section('Ville'),
-            MenuItem::linkToDashboard('Ville', 'fa fa-home'),
-            MenuItem::linkToExitImpersonation('Stop impersonation', 'fa fa-exit'),
 
        ];
     }

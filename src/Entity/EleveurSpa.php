@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ElveursSpaRepository;
+use App\Repository\EleveurSpaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ElveursSpaRepository::class)
+ * @ORM\Entity(repositoryClass=EleveurSpaRepository::class)
  */
-class ElveursSpa extends User
+class EleveurSpa extends User
 {
 
     /**
@@ -79,7 +79,7 @@ class ElveursSpa extends User
     public function getRoles(): array
     {
         $roles = parent::getRoles();
-        $roles[] = "ROLE_ELVEUR_SPA";
+        $roles[] = "ROLE_ELEVEUR_SPA";
         return $roles;
     }
 
