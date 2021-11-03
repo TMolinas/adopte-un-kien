@@ -3,15 +3,20 @@
 
 {% block body %}
     <div class="block">
-        <h1>Mes Messages reçu</h1>
-        {% for messageRecu in adoptant.messagesRecu %}
+        <h1>Mes demandes d'adoption</h1>
+        {% for adoptionRequest in adoptant.adoptionRequests %}
+            <h3>adoptionRequest.annonce.titre</h3>
+            {% for message in adoptionRequest.messages %}
         <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-            <div class="card-header">messageRecu.expediteur</div>
+            <div class="card-header">De {{ message.expediteur }}</div>
             <div class="card-body">
-                <h5 class="card-title">messageRecu.</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text"> {{ message.content }}
+                    <small class="text-muted">{{ message.createdAt | date('d/m/Y H:i')  }}</small></p>
             </div>
         </div>
+            {% endfor %}
+            <br />
+            <br />
         {% endfor %}
     </div>
 
