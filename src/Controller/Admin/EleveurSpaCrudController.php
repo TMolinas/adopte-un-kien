@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\ElveursSpa;
+use App\Entity\EleveurSpa;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class ElveursSpaCrudController extends AbstractCrudController
+class EleveurSpaCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return ElveursSpa::class;
+        return EleveurSpa::class;
     }
 
     /*

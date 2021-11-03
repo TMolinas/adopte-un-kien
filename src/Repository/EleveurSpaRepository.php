@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\ElveursSpa;
+use App\Entity\EleveurSpa;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method ElveursSpa|null find($id, $lockMode = null, $lockVersion = null)
- * @method ElveursSpa|null findOneBy(array $criteria, array $orderBy = null)
- * @method ElveursSpa[]    findAll()
- * @method ElveursSpa[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method EleveurSpa|null find($id, $lockMode = null, $lockVersion = null)
+ * @method EleveurSpa|null findOneBy(array $criteria, array $orderBy = null)
+ * @method EleveurSpa[]    findAll()
+ * @method EleveurSpa[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ElveursSpaRepository extends ServiceEntityRepository
+class EleveurSpaRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ElveursSpa::class);
+        parent::__construct($registry, EleveurSpa::class);
     }
 
     // /**

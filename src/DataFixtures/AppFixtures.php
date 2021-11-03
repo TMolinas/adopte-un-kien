@@ -5,7 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Annonce;
 use App\Entity\Adoptant;
 use App\Entity\Photo;
-use App\Entity\ElveursSpa;
+use App\Entity\EleveurSpa;
 use App\Entity\Dog;
 use App\Entity\Ville;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
 
         $manager->persist($userAdoptant2);
 
-        $userEleveurSpa1 = new ElveursSpa();
+        $userEleveurSpa1 = new EleveurSpa();
         $userEleveurSpa1->setUserName('userEleveurSpa1');
         $userEleveurSpa1->setEmail('userEleveurSpa1@gmail.com');
         $roleEleveur1 = [];
@@ -60,7 +60,7 @@ class AppFixtures extends Fixture
 
         $manager->persist($userEleveurSpa1);
 
-        $userEleveurSpa2 = new ElveursSpa();
+        $userEleveurSpa2 = new EleveurSpa();
         $userEleveurSpa2->setUserName('userEleveurSpa2');
         $userEleveurSpa2->setEmail('userEleveurSpa2@gmail.com');
         $roleEleveur2 = [];
@@ -75,7 +75,7 @@ class AppFixtures extends Fixture
 
         $manager->persist($userEleveurSpa2);
 
-        $userEleveurSpa3 = new ElveursSpa();
+        $userEleveurSpa3 = new EleveurSpa();
         $userEleveurSpa3->setUserName('userEleveurSpa3');
         $userEleveurSpa3->setEmail('userEleveurSpa3@gmail.com');
         $roleEleveur3 = [];

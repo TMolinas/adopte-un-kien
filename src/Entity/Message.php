@@ -17,16 +17,11 @@ class Message
      */
     private $id;
 
+
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $content;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $recipient;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
