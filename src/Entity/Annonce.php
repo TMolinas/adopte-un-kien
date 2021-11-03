@@ -42,11 +42,17 @@ class Annonce
      */
     private $eleveurSpa;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="annonce")
+     */
+    private $adoptionRequests;
+
 
 
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
+        $this->adoptionRequests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,5 +154,35 @@ class Annonce
 
         return $ret;
         
+    }
+
+    /**
+     * @return Collection|AdoptionRequest[]
+     */
+    public function getAdoptionRequests(): Collection
+    {
+        return $this->adoptionRequests;
+    }
+
+    public function addAdoptionRequest(AdoptionRequest $adoptionRequest): self
+    {
+        if (!$this->adoptionRequests->contains($adoptionRequest)) {
+            $this->adoptionRequests[] = $adoptionRequest;
+            $adoptionRequest->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdoptionRequest(AdoptionRequest $adoptionRequest): self
+    {
+        if ($this->adoptionRequests->removeElement($adoptionRequest)) {
+            // set the owning side to null (unless already changed)
+            if ($adoptionRequest->getAnnonce() === $this) {
+                $adoptionRequest->setAnnonce(null);
+            }
+        }
+
+        return $this;
     }
 }
