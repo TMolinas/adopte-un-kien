@@ -56,21 +56,24 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     protected $adresse;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="recipient", orphanRemoval=true)
-     */
-    protected $sender;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="destinaire", orphanRemoval=true)
      */
-    protected $messages;
+    private $messagesRecus;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="expediteur", orphanRemoval=true)
+     */
+    private $messagesEnvoyes;
 
 
     public function __construct()
     {
         $this->sender = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->messagesRecus = new ArrayCollection();
+        $this->messagesEnvoyes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,35 +183,6 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Message[]
-     */
-    public function getSender(): Collection
-    {
-        return $this->sender;
-    }
-
-    public function addSender(Message $sender): self
-    {
-        if (!$this->sender->contains($sender)) {
-            $this->sender[] = $sender;
-            $sender->setRecipient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSender(Message $sender): self
-    {
-        if ($this->sender->removeElement($sender)) {
-            // set the owning side to null (unless already changed)
-            if ($sender->getRecipient() === $this) {
-                $sender->setRecipient(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Message[]
@@ -243,5 +217,65 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return $this->getUserName();
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessagesRecus(): Collection
+    {
+        return $this->messagesRecus;
+    }
+
+    public function addMessagesRecu(Message $messagesRecu): self
+    {
+        if (!$this->messagesRecus->contains($messagesRecu)) {
+            $this->messagesRecus[] = $messagesRecu;
+            $messagesRecu->setDestinaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagesRecu(Message $messagesRecu): self
+    {
+        if ($this->messagesRecus->removeElement($messagesRecu)) {
+            // set the owning side to null (unless already changed)
+            if ($messagesRecu->getDestinaire() === $this) {
+                $messagesRecu->setDestinaire(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessagesEnvoyes(): Collection
+    {
+        return $this->messagesEnvoyes;
+    }
+
+    public function addMessagesEnvoye(Message $messagesEnvoye): self
+    {
+        if (!$this->messagesEnvoyes->contains($messagesEnvoye)) {
+            $this->messagesEnvoyes[] = $messagesEnvoye;
+            $messagesEnvoye->setExpediteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagesEnvoye(Message $messagesEnvoye): self
+    {
+        if ($this->messagesEnvoyes->removeElement($messagesEnvoye)) {
+            // set the owning side to null (unless already changed)
+            if ($messagesEnvoye->getExpediteur() === $this) {
+                $messagesEnvoye->setExpediteur(null);
+            }
+        }
+
+        return $this;
     }
 }
