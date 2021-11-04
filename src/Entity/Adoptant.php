@@ -18,10 +18,11 @@ class Adoptant extends User
      */
     private $prenom;
 
+
     /**
-     * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="adoptant", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="adoptant1", orphanRemoval=true)
      */
-    private $eleveur;
+    private $adoptionRequests;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -32,6 +33,7 @@ class Adoptant extends User
     {
         parent::__construct();
         $this->eleveur = new ArrayCollection();
+        $this->adoptionRequests = new ArrayCollection();
     }
 
 
@@ -59,35 +61,6 @@ class Adoptant extends User
         return $this;
     }
 
-    /**
-     * @return Collection|AdoptionRequest[]
-     */
-    public function getEleveur(): Collection
-    {
-        return $this->eleveur;
-    }
-
-    public function addEleveur(AdoptionRequest $eleveur): self
-    {
-        if (!$this->eleveur->contains($eleveur)) {
-            $this->eleveur[] = $eleveur;
-            $eleveur->setAdoptant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEleveur(AdoptionRequest $eleveur): self
-    {
-        if ($this->eleveur->removeElement($eleveur)) {
-            // set the owning side to null (unless already changed)
-            if ($eleveur->getAdoptant() === $this) {
-                $eleveur->setAdoptant(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getRoles(): array
     {
@@ -96,6 +69,36 @@ class Adoptant extends User
         $roles[] = 'ROLE_ADOPTANT';
 
         return array_unique($roles);
+    }
+
+    /**
+     * @return Collection|AdoptionRequest[]
+     */
+    public function getAdoptionRequests(): Collection
+    {
+        return $this->adoptionRequests;
+    }
+
+    public function addAdoptionRequest(AdoptionRequest $adoptionRequest): self
+    {
+        if (!$this->adoptionRequests->contains($adoptionRequest)) {
+            $this->adoptionRequests[] = $adoptionRequest;
+            $adoptionRequest->setAdoptant1($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdoptionRequest(AdoptionRequest $adoptionRequest): self
+    {
+        if ($this->adoptionRequests->removeElement($adoptionRequest)) {
+            // set the owning side to null (unless already changed)
+            if ($adoptionRequest->getAdoptant1() === $this) {
+                $adoptionRequest->setAdoptant1(null);
+            }
+        }
+
+        return $this;
     }
 
 }

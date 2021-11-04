@@ -23,11 +23,6 @@ class Message
      */
     private $content;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $sender;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -38,6 +33,18 @@ class Message
      * @ORM\ManyToOne(targetEntity=AdoptionRequest::class, inversedBy="messages")
      */
     private $adoptionRequest;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messagesRecus")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $destinaire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messagesEnvoyes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $expediteur;
 
     public function getId(): ?int
     {
@@ -52,30 +59,6 @@ class Message
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getRecipient(): ?User
-    {
-        return $this->recipient;
-    }
-
-    public function setRecipient(?User $recipient): self
-    {
-        $this->recipient = $recipient;
-
-        return $this;
-    }
-
-    public function getSender(): ?User
-    {
-        return $this->sender;
-    }
-
-    public function setSender(?User $sender): self
-    {
-        $this->sender = $sender;
 
         return $this;
     }
@@ -100,6 +83,30 @@ class Message
     public function setAdoptionRequest(?AdoptionRequest $adoptionRequest): self
     {
         $this->adoptionRequest = $adoptionRequest;
+
+        return $this;
+    }
+
+    public function getDestinaire(): ?User
+    {
+        return $this->destinaire;
+    }
+
+    public function setDestinaire(?User $destinaire): self
+    {
+        $this->destinaire = $destinaire;
+
+        return $this;
+    }
+
+    public function getExpediteur(): ?User
+    {
+        return $this->expediteur;
+    }
+
+    public function setExpediteur(?User $expediteur): self
+    {
+        $this->expediteur = $expediteur;
 
         return $this;
     }

@@ -1,7 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdoptantController!{% endblock %}
 
 {% block body %}
+    <div class="block">
+        <h1>Mes demandes d'adoption</h1>
+        {% for adoptionRequest in adoptant.adoptionRequests %}
+            <h3>adoptionRequest.annonce.titre</h3>
+            {% for message in adoptionRequest.messages %}
+        <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">De {{ message.expediteur }}</div>
+            <div class="card-body">
+                <p class="card-text"> {{ message.content }}
+                    <small class="text-muted">{{ message.createdAt | date('d/m/Y H:i')  }}</small></p>
+            </div>
+        </div>
+            {% endfor %}
+            <br />
+            <br />
+        {% endfor %}
+    </div>
 
 {% endblock %}
