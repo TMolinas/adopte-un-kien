@@ -65,7 +65,7 @@ class AdoptDogController extends AbstractController
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function registrationAdoptant(Request $request, EntityManagerInterface $em): Response
+    public function registrationAdoptant(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response
     {
         $adoptant = new Adoptant();
 

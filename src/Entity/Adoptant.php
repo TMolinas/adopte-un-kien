@@ -12,10 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Adoptant extends User
 {
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -27,6 +23,11 @@ class Adoptant extends User
      * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="adoptant1", orphanRemoval=true)
      */
     private $adoptionRequests;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
 
     public function __construct()
     {

@@ -36,39 +36,40 @@
             </ul>
 
 
-            <ul class="nav navbar-nav navbar-right">
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">S'inscrire</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ path('registrationAdoptant') }}">en tant qu'adoptant</a>
-                        <a class="dropdown-item" href="{{ path('inscription_eleveur') }}">en tant qu'éleveur SPA</a>
 
-                    </div>
-                </li>
+                <ul class="nav navbar-nav navbar-right">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">S'inscrire</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('registrationAdoptant') }}">en tant qu'adoptant</a>
+                            <a class="dropdown-item" href="{{ path('inscription_eleveur') }}">en tant qu'éleveur SPA</a>
 
-                {% if not app.user %}
-                <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            href="{{ path('app_login') }}"
-                            tabindex="-1"
-                            aria-disabled="true"
-                    >Se Connecter</a
-                    >
-                </li>
-                {% endif %}
-                {% if app.user %}
-                <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            href="{{ path('app_login') }}"
-                            tabindex="-1"
-                            aria-disabled="true"
-                    >Se Deconnecter</a
-                    >
-                </li>
-                {% endif %}
-            </ul>
+                        </div>
+                    </li>
+                    {% if not app.user %}
+                    <li class="nav-item">
+                        <a
+                                class="nav-link"
+                                href="{{ path('app_login') }}"
+                                tabindex="-1"
+                                aria-disabled="true"
+                        >Se Connecter</a
+                        >
+                    </li>
+                    {% endif %}
+                    {% if app.user %}
+                    <li class="nav-item">
+                        <a
+                                class="nav-link"
+                                href="{{ path('app_logout') }}"
+                                tabindex="-1"
+                                aria-disabled="true"
+                        >Se Déconnecter</a
+                        >
+                    </li>
+                    {% endif %}
+                </ul>
+
         </div>
     </div>
 </nav>
