@@ -22,7 +22,6 @@ class AdoptDogController extends AbstractController
     {
         $this->hasher = $hasher;
     }
-
     /**
      * @Route("/adopt/dog", name="adopt_dog")
      */

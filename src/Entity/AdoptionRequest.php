@@ -51,6 +51,7 @@ class AdoptionRequest
      */
     private $annonce;
 
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -150,4 +151,6 @@ class AdoptionRequest
 
         return $this;
     }
+
+
 }
