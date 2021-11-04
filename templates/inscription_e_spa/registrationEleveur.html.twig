@@ -1,28 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}inscription des eleveurs et/ou Spa{% endblock %}
+{% block title %}Inscription des Eleveurs et/ou des SPA{% endblock %}
 
 {% block body %}
     <br>
-    <div class="container col-9" >
-                    <h3 >Bienvenue sur le formulair d'inscription professionnel</h3>
-<div class="container">
+    <div class="container col-9">
+        <h3>Bienvenue sur le formulaire d'Inscription Professionnelle</h3>
 
 
-{{ form_start(form) }}
-
-
-    {{ form_row(form.userName) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.telephone) }}
-    {{ form_row(form.password) }}
-    {{ form_row(form.nameSociety) }}
-    {{ form_row(form.siret) }}
-    Entrez votre
-    {{ form_row(form.adresse) }}
-        {{ form_row(form.isSpa) }}
-    {% if form.submit is defined %}
-    {{ form_row(form.submit) }}
-    {% endif %}
-{{ form_end(form) }}</div></div>
+        <div class="container">
+            {{ form_start(form) }}
+            {{ form_row(form.userName) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.telephone) }}
+            {{ form_row(form.password) }}
+            {{ form_row(form.nameSociety) }}
+            {{ form_row(form.siret) }}
+            Entrez votre
+            {{ form_row(form.adresse) }}
+            {{ form_row(form.isSpa) }}
+            {% if form.submit is defined %}
+                {{ form_row(form.submit) }}
+            {% endif %}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
