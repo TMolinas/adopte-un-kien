@@ -37,7 +37,7 @@ class Annonce
     private $dogs;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ElveursSpa::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=EleveurSpa::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=true)
      */
     private $eleveurSpa;
@@ -117,12 +117,12 @@ class Annonce
         return $this;
     }
 
-    public function getEleveurSpa(): ?ElveursSpa
+    public function getEleveurSpa(): ?EleveurSpa
     {
         return $this->eleveurSpa;
     }
 
-    public function setEleveurSpa(?ElveursSpa $eleveurSpa): self
+    public function setEleveurSpa(?EleveurSpa $eleveurSpa): self
     {
         $this->eleveurSpa = $eleveurSpa;
 

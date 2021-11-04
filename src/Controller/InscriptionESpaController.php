@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\ElveursSpa;
+use App\Entity\EleveurSpa;
 use App\Form\InscriptionESpaType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +30,7 @@ class InscriptionESpaController extends AbstractController
 
 
     {
-        $inscriptionESpa= new ElveursSpa();
+        $inscriptionESpa= new EleveurSpa();
         $form=$this->createForm(InscriptionESpaType::class,$inscriptionESpa);
 
 
@@ -42,7 +42,7 @@ class InscriptionESpaController extends AbstractController
             return  $this->redirectToRoute ('about');
         }
 
-        return $this->render('inscription_e_spa/registrationElveur.html.twig',[
+        return $this->render('inscription_e_spa/registrationEleveur.html.twig',[
             'form'=>$form->createView(),
         ]);
     }

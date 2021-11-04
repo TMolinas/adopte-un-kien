@@ -17,6 +17,7 @@ class Message
      */
     private $id;
 
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -26,12 +27,14 @@ class Message
     /**
      * @ORM\Column(type="datetime_immutable")
      */
+
     private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=AdoptionRequest::class, inversedBy="messages")
      */
     private $adoptionRequest;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messagesRecus")

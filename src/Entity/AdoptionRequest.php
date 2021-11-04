@@ -26,7 +26,7 @@ class AdoptionRequest
     private $adoptant;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ElveursSpa::class, inversedBy="adoptionRequests")
+     * @ORM\ManyToOne(targetEntity=EleveurSpa::class, inversedBy="adoptionRequests")
      * @ORM\JoinColumn(nullable=false)
      */
     private $eleveur;
@@ -74,12 +74,12 @@ class AdoptionRequest
         return $this;
     }
 
-    public function getEleveur(): ?ElveursSpa
+    public function getEleveur(): ?EleveurSpa
     {
         return $this->eleveur;
     }
 
-    public function setEleveur(?ElveursSpa $eleveur): self
+    public function setEleveur(?EleveurSpa $eleveur): self
     {
         $this->eleveur = $eleveur;
 
