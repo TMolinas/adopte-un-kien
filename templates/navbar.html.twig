@@ -1,8 +1,9 @@
 <!-- Bootstrap 5 Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/0/00/Logo_de_la_SPA_(France).png/813px-Logo_de_la_SPA_(France).png" alt="logo" height="50px" width=50px">
-        <a class="navbar-brand" {{ asset('img/logo.png') }}>Adopte Un Kien</a>
+    <img src="{{ asset("img/logo.png") }}" alt="logo-dogy" height="100px" width=100px"/>
+    <div class="container">
+
+        <a class="navbar-brand"> <h4 class="fa-bold">Adopte Un Kien </h4></a>
         <button
                 class="navbar-toggler"
                 type="button"
@@ -17,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -25,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('eleveur') }}">Nos éleveurs</a>
+                    <a class="nav-link active" aria-current="page" href="{{ path('eleveurs') }}">Nos éleveurs</a>
                 </li>
 
                 <li class="nav-item">
