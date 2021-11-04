@@ -14,7 +14,7 @@ class AdoptantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('userName')
+            ->add('username')
             ->add('email')
             ->add('telephone')
             ->add('password', PasswordType::class)
