@@ -6,6 +6,7 @@ use App\Repository\EleveurSpaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EleveurSpaRepository::class)
@@ -25,8 +26,14 @@ class EleveurSpa extends User
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\Length(
+     *      min = 14,
+     *      max = 14,
+     *      minMessage = "Your first name must be at least 14 characters long",
+     *      maxMessage = "Your first name cannot be longer than 14 characters"
+     * )
      */
-    private $siret;
+    private ?string $siret;
 
     /**
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="eleveurSpa")
@@ -70,12 +77,12 @@ class EleveurSpa extends User
         return $this;
     }
 
-    public function getSiret(): ?int
+    public function getSiret(): ?string
     {
         return $this->siret;
     }
 
-    public function setSiret(int $siret): self
+    public function setSiret(?string $siret): self
     {
         $this->siret = $siret;
 
