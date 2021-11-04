@@ -9,11 +9,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\UserPassportInterface;
 
 class AdoptDogController extends AbstractController
 {
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     /**
      * @Route("/adopt/dog", name="adopt_dog")
      */
@@ -57,14 +66,17 @@ class AdoptDogController extends AbstractController
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function registrationAdoptant(Request $request, EntityManagerInterface $em): Response
+    public function registrationAdoptant(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response
     {
         $adoptant = new Adoptant();
+
 
         $formAdoptant = $this->createForm(AdoptantType::class, $adoptant);
         $formAdoptant->handleRequest($request);
 
         if ($formAdoptant->isSubmitted() && $formAdoptant->isValid()) {
+            $hash = $this->hasher->hashPassword($adoptant, $adoptant->getPassword());
+            $adoptant->setPassword($hash);
             $em->persist($adoptant);
             $em->flush();
 
