@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un chien{% endblock %}
+
+{% block body %}
+    <div class="container col-9">
+        {{ form_start(formDog) }}
+        {{ form_widget(formDog) }}
+        <input class="btn btn-secondary" type="submit" value="Enregistrer">
+        {{ form_end(formDog) }}
+    </div>
+{% endblock %}
