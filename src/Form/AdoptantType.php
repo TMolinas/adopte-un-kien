@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Adoptant;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,11 +13,11 @@ class AdoptantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('userName')
+            ->add('username')
             ->add('email')
             ->add('telephone')
-            ->add('password')
-            ->add('non')
+            ->add('password', PasswordType::class)
+            ->add('nom')
             ->add('prenom')
         ;
     }

@@ -19,6 +19,7 @@ class Adresse
      */
     private ?int $id;
 
+
     /**
      * @ORM\Column(type="string", length=10)
      */
@@ -40,10 +41,10 @@ class Adresse
      */
     private $user;
 
-//    public function getId(): ?int
-//    {
-//        return $this->id;
-//    }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getNuberInStreet(): ?string
     {
