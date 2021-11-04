@@ -286,15 +286,15 @@ class AppFixtures extends Fixture
 
 
         $ville5= new Ville();
-        $ville5->setCityName('renne');
+        $ville5->setCityName('Rennes');
         $manager->persist($ville5);
 
         $ville6= new Ville();
-        $ville6->setCityName('obiwankenobecity');
+        $ville6->setCityName('Lyon');
         $manager->persist($ville6);
 
         $ville7= new Ville();
-        $ville7->setCityName('moncul');
+        $ville7->setCityName('Lille');
         $manager->persist($ville7);
 
 
