@@ -41,8 +41,8 @@ class UserSubscribeSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            BeForeEntityPersistedEvent::class => 'onBeForEntityPersistedEvent',
-            BeforeEntityUpdatedEvent::class => 'onBeForEntityPersistedEvent',
+            BeforeEntityPersistedEvent::class => 'onBeforeEntityPersistanceEvent',
+            BeforeEntityUpdatedEvent::class => 'onBeforeEntityPersistanceEvent',
 
         ];
     }

@@ -273,7 +273,7 @@ class AppFixtures extends Fixture
         $manager->persist($ville2);
 
         $ville3= new Ville();
-        $ville3->setCityName('marseillBB');
+        $ville3->setCityName('marseille-BB');
         $manager->persist($ville3);
 
         $ville4= new Ville();
@@ -281,7 +281,7 @@ class AppFixtures extends Fixture
         $manager->persist($ville4);
 
         $ville5= new Ville();
-        $ville5->setCityName('Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch');
+        $ville5->setCityName('Anus');
         $manager->persist($ville5);
 
 
@@ -295,6 +295,10 @@ class AppFixtures extends Fixture
 
         $ville7= new Ville();
         $ville7->setCityName('Lille');
+        $manager->persist($ville7);
+
+        $ville8= new Ville();
+        $ville8->setCityName('Amsterdam');
         $manager->persist($ville7);
 
 
