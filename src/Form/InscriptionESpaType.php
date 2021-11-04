@@ -18,18 +18,17 @@ class InscriptionESpaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('userName',TextType::class,['label'=> 'entrez votre nom'])
-            ->add('email',EmailType::class,['label'=> 'entrez votre email'])
-            ->add('telephone',TextType::class,['label'=> 'entrez votre telephone'])
-            ->add('password',PasswordType::class,['label'=> 'entrez votre mot de passe'])
+            ->add('userName',TextType::class,['label'=> 'Nom'])
+            ->add('email',EmailType::class,['label'=> 'Email'])
+            ->add('telephone',TextType::class,['label'=> 'Téléphone'])
+            ->add('password',PasswordType::class,['label'=> 'Mot de passe'])
             ->add('isSpa',CheckboxType::class,[
                 'required'=>false,
             ])
-            ->add('nameSociety',TextType::class,['label'=> 'entrez le nom de votre societer'])
-            ->add('siret',NumberType::class,['label'=> 'entrez votre numero de siret'])
+            ->add('nameSociety',TextType::class,['label'=> 'Nom de Société'])
+            ->add('siret',NumberType::class,['label'=> 'Numéro de Siret'])
             ->add('adresse',AdresseType::class)
             ->add('submit',SubmitType::class);
-
 
     }
 
