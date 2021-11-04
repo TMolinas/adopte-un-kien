@@ -16,6 +16,13 @@ use Symfony\Component\Security\Http\Authenticator\Passport\UserPassportInterface
 
 class AdoptDogController extends AbstractController
 {
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     /**
      * @Route("/adopt/dog", name="adopt_dog")
      */
@@ -68,7 +75,7 @@ class AdoptDogController extends AbstractController
         $formAdoptant->handleRequest($request);
 
         if ($formAdoptant->isSubmitted() && $formAdoptant->isValid()) {
-            $hash = $hasher->hash($adoptant->getPassword());
+            $hash = $this->hasher->hashPassword($adoptant, $adoptant->getPassword());
             $adoptant->setPassword($hash);
             $em->persist($adoptant);
             $em->flush();

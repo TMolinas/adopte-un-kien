@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Adoptant;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,8 +17,8 @@ class AdoptantType extends AbstractType
             ->add('userName')
             ->add('email')
             ->add('telephone')
-            ->add('password')
-            ->add('non')
+            ->add('password', PasswordType::class)
+            ->add('nom')
             ->add('prenom')
         ;
     }
