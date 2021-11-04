@@ -27,6 +27,17 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
+        for ($i = 1; $i <= 10; $i++){
+            $adresse = new Adresse();
+            $adresse->setVille("Limonest")
+                    ->setNuberInStreet(22)
+                    ->setNameOf7Street("Rue des pigeons")
+                    ->setUser(null);
+            $manager->persist($adresse);
+        }
+
+        $manager->flush();
+
         $userAdoptant1 = new Adoptant();
         $userAdoptant1->setUserName('userAdoptant1');
         $userAdoptant1->setEmail('userAdoptant1@gmail.com');
