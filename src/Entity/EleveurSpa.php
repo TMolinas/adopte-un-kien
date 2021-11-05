@@ -48,6 +48,7 @@ class EleveurSpa extends User
 
     public function __construct()
     {
+        parent::__construct();
         $this->annonces = new ArrayCollection();
         $this->adoptionRequests = new ArrayCollection();
     }
