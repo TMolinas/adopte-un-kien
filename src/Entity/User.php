@@ -296,4 +296,8 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->plainPassword = $plainPassword;
     }
+
+    public function __toString(): string {
+        return $this->getUsername();
+    }
 }

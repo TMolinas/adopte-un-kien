@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdoptionRequestController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Mes demandes d'adoptions en cours</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Date de création de la demande</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for adoption_request in adoption_requests %}
+                {% if not adoption_request.isAccepted %}
+                    <tr>
+                        <th scope="row">{{ adoption_request.id }}</th>
+                        <td>{{ adoption_request.createdAt | date('d/m/Y H:i')}}</td>
+                        <td>
+                            {% if app.user == adoption_request.eleveur %}
+                                <a href="{{ path('accept_adoption', {'id' : adoption_request.id}) }}" class="btn btn-outline-success">Accepter l'adoption</a>
+                            {% endif %}
+                            <a href="{{ path('messages', {'id' : adoption_request.id}) }}" class="btn btn-outline-primary">Voir les messages</a>
+                        </td>
+
+                    </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h1>Mes demandes d'adoptions acceptées</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Date de création de la demande</th>
+                <th scope="col"></th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for adoption_request in adoption_requests %}
+                {% if adoption_request.isAccepted %}
+                    <tr>
+                        <th scope="row">{{ adoption_request.id }}</th>
+                        <td>{{ adoption_request.createdAt | date('d/m/Y H:i') }}</td>
+                        <td><a href="{{ path('messages', {'id' : adoption_request.id}) }}" class="btn btn-outline-success">Voir les messages</a></td>
+
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

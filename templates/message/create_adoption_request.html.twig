@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoyer une demande d'adoption{% endblock %}
+
+{% block body %}
+
+    <div class="container col-9">
+
+        {{ form_start(form_message) }}
+        {{ form_widget(form_message) }}
+        <input class="btn btn-secondary" type="submit" value="Enregistrer">
+        {{ form_end(form_message) }}
+    </div>
+{% endblock %}

@@ -25,7 +25,7 @@ class Message
 
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
@@ -46,6 +46,11 @@ class Message
      */
     private $expediteur;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isRead;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,12 +68,12 @@ class Message
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -107,6 +112,18 @@ class Message
     public function setExpediteur(?User $expediteur): self
     {
         $this->expediteur = $expediteur;
+
+        return $this;
+    }
+
+    public function getIsRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setIsRead(bool $isRead): self
+    {
+        $this->isRead = $isRead;
 
         return $this;
     }

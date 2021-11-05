@@ -49,6 +49,7 @@ class Annonce
 
 
 
+
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
@@ -72,12 +73,12 @@ class Annonce
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(\DateTime $date): self
     {
         $this->date = $date;
 
@@ -185,4 +186,5 @@ class Annonce
 
         return $this;
     }
+
 }

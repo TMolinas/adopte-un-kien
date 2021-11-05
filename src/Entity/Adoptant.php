@@ -20,7 +20,7 @@ class Adoptant extends User
 
 
     /**
-     * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="adoptant1", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="adoptant", orphanRemoval=true)
      */
     private $adoptionRequests;
 
@@ -83,7 +83,7 @@ class Adoptant extends User
     {
         if (!$this->adoptionRequests->contains($adoptionRequest)) {
             $this->adoptionRequests[] = $adoptionRequest;
-            $adoptionRequest->setAdoptant1($this);
+            $adoptionRequest->setAdoptant($this);
         }
 
         return $this;
@@ -93,12 +93,15 @@ class Adoptant extends User
     {
         if ($this->adoptionRequests->removeElement($adoptionRequest)) {
             // set the owning side to null (unless already changed)
-            if ($adoptionRequest->getAdoptant1() === $this) {
-                $adoptionRequest->setAdoptant1(null);
+            if ($adoptionRequest->getAdoptant() === $this) {
+                $adoptionRequest->setAdoptant(null);
             }
         }
 
         return $this;
     }
 
+    public function __toString(): string {
+        return $this->getUserIdentifier();
+    }
 }
