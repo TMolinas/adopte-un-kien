@@ -117,13 +117,6 @@ class AdoptDogController extends AbstractController
     }
 
 
-    /**
-    *@Route("/spa", name="spa")
-     */
-    public function showSPA()
-    {
-        return $this->render('adopt_dog/spa.html.twig');
-    }
 
 
     /**

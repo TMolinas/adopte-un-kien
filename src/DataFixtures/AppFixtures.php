@@ -299,7 +299,7 @@ class AppFixtures extends Fixture
 
         $ville8= new Ville();
         $ville8->setCityName('Amsterdam');
-        $manager->persist($ville7);
+        $manager->persist($ville8);
 
 
 
