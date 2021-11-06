@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Adoptant;
 use App\Entity\Annonce;
+use App\Entity\Contact;
 use App\Form\AdoptantType;
+use App\Form\ContactType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,6 +63,41 @@ class AdoptDogController extends AbstractController
     }
 
     /**
+     * @Route("/contact_us", name="contact")
+     */
+    public function contactus(Request $request): Response
+    {
+
+
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){}
+
+        return $this->render('adopt_dog/contact.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+    * @Route("/helps", name="helps")
+    */
+    public function helps()
+    {
+        return $this->render('adopt_dog/help.html.twig');
+    }
+
+    /**
+    * @Route("/other", name="other")
+    */
+    public function otherlinks()
+    {
+        return $this->render('adopt_dog/other.html.twig');
+    }
+
+    /**
      * @Route("/registration/adoptant", name="registrationAdoptant")
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -69,7 +106,6 @@ class AdoptDogController extends AbstractController
     public function registrationAdoptant(Request $request, EntityManagerInterface $em): Response
     {
         $adoptant = new Adoptant();
-
 
         $formAdoptant = $this->createForm(AdoptantType::class, $adoptant);
         $formAdoptant->handleRequest($request);
