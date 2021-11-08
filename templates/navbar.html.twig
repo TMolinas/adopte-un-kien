@@ -40,12 +40,13 @@
 
                             {% endif %}
                         {% endfor %}
-                            {% if count > 1 %}
-                                ({{ count }} nouveaux messages)
-                            {% elseif count == 1 %}
-                                (un nouveau message)
+                            {% if count > 0 %}
+
+                                <span class="btn-outline-primary">({{ count }})</span>
+
                             {% endif %}
                         </a>
+
                     </li>
                 {% endif %}
                 <li class="nav-item">
