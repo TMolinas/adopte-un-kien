@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -67,7 +68,16 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $messagesEnvoyes;
 
-    protected $plainPassword;
+
+
+    /**
+     * @Assert\Regex(
+     * pattern ="/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){4,}$/",
+     * match=true,
+     * message="Votre mot de passe doit comporter au moins quatre caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole."
+     * )
+     */
+    protected ?string $plainPassword;
 
 
     public function __construct()

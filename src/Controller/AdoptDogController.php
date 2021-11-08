@@ -111,7 +111,7 @@ class AdoptDogController extends AbstractController
         $formAdoptant->handleRequest($request);
 
         if ($formAdoptant->isSubmitted() && $formAdoptant->isValid()) {
-            $hash = $this->hasher->hashPassword($adoptant, $adoptant->getPassword());
+            $hash = $this->hasher->hashPassword($adoptant, $adoptant->getPlainPassword());
             $adoptant->setPassword($hash);
             $em->persist($adoptant);
             $em->flush();

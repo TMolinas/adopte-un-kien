@@ -21,7 +21,7 @@ class InscriptionESpaType extends AbstractType
             ->add('userName',TextType::class,['label'=> 'Nom'])
             ->add('email',EmailType::class,['label'=> 'Email'])
             ->add('telephone',TextType::class,['label'=> 'Téléphone'])
-            ->add('password',PasswordType::class,['label'=> 'Mot de passe'])
+            ->add('plainPassword',PasswordType::class,['label'=> 'Mot de passe'])
             ->add('isSpa',CheckboxType::class,[
                 'required'=>false,
             ])

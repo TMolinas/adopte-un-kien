@@ -44,7 +44,7 @@ class InscriptionESpaController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $hash = $this->hasher->hashPassword($inscriptionESpa, $inscriptionESpa->getPassword());
+            $hash = $this->hasher->hashPassword($inscriptionESpa, $inscriptionESpa->getPlainPassword());
             $inscriptionESpa->setPassword($hash);
             $em->persist($inscriptionESpa);
             $em->flush();
