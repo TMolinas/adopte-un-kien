@@ -151,11 +151,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Adoptant'),
             MenuItem::linkToCrud('Adoptant', 'fa fa-user', Adoptant::class),
 
-
-            MenuItem::section('Adresse'),
-            MenuItem::linkToCrud('Adresse', 'fa fa-user', Adresse::class),
-
-
             // links to the 'index' action of the Category CRUD controller
             MenuItem::section('Annonce'),
             MenuItem::linkToCrud('Annonce', 'fa fa-tags', Annonce::class),

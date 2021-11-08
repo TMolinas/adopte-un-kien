@@ -128,9 +128,17 @@
     <p><strong>{{ nbPhotos }}</strong> Photo - <a href="{{ photo_url_new }}">Créer une photo</a>
     </p>
 
-    {% set photo_url_new = ea_url()
+    {% set user_url_new = ea_url()
         .setController('App\\Controller\\Admin\\UserCrudController')
         .setAction('new') %}
-    <p><strong>{{ nbUsers }}</strong> Photo - <a href="{{ photo_url_new }}">Créer un utilisateur</a>
+    <p><strong>{{ nbUsers }}</strong> Utilisateurs - <a href="{{ user_url_new }}">Créer un utilisateur</a>
     </p>
+
+    {% set ville_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\VillesCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbVilles }}</strong> Villes - <a href="{{ ville_url_new }}">Créer une ville</a>
+    </p>
+
+
 {% endblock %}

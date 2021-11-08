@@ -76,6 +76,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->messages = new ArrayCollection();
         $this->messagesRecus = new ArrayCollection();
         $this->messagesEnvoyes = new ArrayCollection();
+        $this->adresse = new Adresse();
     }
 
     public function getId(): ?int

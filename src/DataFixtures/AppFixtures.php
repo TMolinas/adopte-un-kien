@@ -6,6 +6,7 @@ use App\Entity\Admin;
 use App\Entity\Adresse;
 use App\Entity\Annonce;
 use App\Entity\Adoptant;
+use App\Entity\Departement;
 use App\Entity\Photo;
 use App\Entity\EleveurSpa;
 use App\Entity\Dog;
@@ -310,7 +311,7 @@ class AppFixtures extends Fixture
         $admin->setPassword($pwd);
         $admin->setTelephone('0000000000');
         $adresse = new Adresse();
-        $adresse->setNameOf7Street('Bouh');
+        $adresse->setNameOf7Street('rue de Boleman');
         $adresse->setNuberInStreet('10');
         $adresse->setVille($ville1);
         $admin->setAdresse($adresse);
@@ -318,12 +319,15 @@ class AppFixtures extends Fixture
         $manager->persist($adresse);
         $manager->persist($admin);
 
+//        $departement = new Departement();
+//        $departement->getNameOfDepartement('Rh')
+
 //     $refuge1= new Refuge();
 //     $refuge1->addRefugeName('Refuge des Prés de Longuevalle - Laond');
 //     $refuge1->addDepartementRefuge('02');
 //     $refuge1->addPhotoRefuge("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJI27YhHDkEZRAG7kIFI0ZK7cNubJ1c5eefw&usqp=CAU");
 //     $manager->persist($refuge1);
-//
+
 //     $refuge2= new Refuge();
 //     $refuge2->addRefugeName('Refuge de Brugheasd');
 //     $refuge2->addDepartementRefuge('03');
