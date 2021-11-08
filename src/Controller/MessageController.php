@@ -28,6 +28,8 @@ class MessageController extends AbstractController
             {
                 $message->setIsRead(true);
                 $messagesToRead->add($message);
+                $em->persist($message);
+                $em->flush();
             }
             elseif ($message->getExpediteur()->getUserIdentifier() === $this->getUser()->getUserIdentifier())
             {
