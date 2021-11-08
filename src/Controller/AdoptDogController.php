@@ -25,15 +25,6 @@ class AdoptDogController extends AbstractController
         $this->hasher = $hasher;
     }
 
-    /**
-     * @Route("/adopt/dog", name="adopt_dog")
-     */
-    public function index(): Response
-    {
-        return $this->render('adopt_dog/index.html.twig', [
-            'controller_name' => 'AdoptDogController',
-        ]);
-    }
 
     /**
      * @Route("/", name="home")
