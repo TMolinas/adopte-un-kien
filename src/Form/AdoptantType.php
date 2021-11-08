@@ -20,6 +20,8 @@ class AdoptantType extends AbstractType
             ->add('password', PasswordType::class)
             ->add('nom')
             ->add('prenom')
+            ->add('adresse', AdresseType::class)
+
         ;
     }
 
