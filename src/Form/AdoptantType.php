@@ -17,7 +17,7 @@ class AdoptantType extends AbstractType
             ->add('username')
             ->add('email')
             ->add('telephone')
-            ->add('password', PasswordType::class)
+            ->add('plainPassword', PasswordType::class)
             ->add('nom')
             ->add('prenom')
             ->add('adresse', AdresseType::class)
