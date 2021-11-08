@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Adoptant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -47,4 +49,12 @@ class AdoptantRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function countElements()
+    {
+        try {
+            return $this->createQueryBuilder('a')->select('count(a.id)')->getQuery()->getSingleScalarResult();
+        } catch (NoResultException | NonUniqueResultException $e) {
+            return null;
+        }
+    }
 }

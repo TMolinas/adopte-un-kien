@@ -1,0 +1,144 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Adopte un Kien{% endblock %}
+
+{% block main %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="navbar-item">
+                    {% set admin_url = ea_url()
+                        .setController('App\\Controller\\Admin\\AdminCrudController')
+                        .setAction('index') %}
+                    <a href="{{ admin_url }}" class="nav-link">Page admins</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set adoptant_url = ea_url()
+                        .setController('App\\Controller\\Admin\\AdoptantCrudController')
+                        .setAction('index') %}
+                    <a href="{{ adoptant_url }}" class="nav-link">Page adoptants</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set adresse_url = ea_url()
+                        .setController('App\\Controller\\Admin\\AdresseCrudController')
+                        .setAction('index') %}
+                    <a href="{{ adresse_url }}" class="nav-link">Page adresses</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set annonce_url = ea_url()
+                        .setController('App\\Controller\\Admin\\AnnonceCrudController')
+                        .setAction('index') %}
+                    <a href="{{ annonce_url }}" class="nav-link">Page annonces</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set departement_url = ea_url()
+                        .setController('App\\Controller\\Admin\\DepartementCrudController')
+                        .setAction('index') %}
+                    <a href="{{ departement_url }}" class="nav-link">Page département</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set dog_url = ea_url()
+                        .setController('App\\Controller\\Admin\\DogCrudController')
+                        .setAction('index') %}
+                    <a href="{{ dog_url }}" class="nav-link">Page chiens</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set eleveurSpa_url = ea_url()
+                        .setController('App\\Controller\\Admin\\EleveurSpaCrudController')
+                        .setAction('index') %}
+                    <a href="{{ eleveurSpa_url }}" class="nav-link">Page éleveurs/SPA</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set photo_url = ea_url()
+                        .setController('App\\Controller\\Admin\\PhotoCrudController')
+                        .setAction('index') %}
+                    <a href="{{ photo_url }}" class="nav-link">Page Photos</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set user_url = ea_url()
+                        .setController('App\\Controller\\Admin\\UserCrudController')
+                        .setAction('index') %}
+                    <a href="{{ user_url }}" class="nav-link">Page utilisateurs</a>
+                </li>
+
+                <li class="navbar-item">
+                    {% set ville_url = ea_url()
+                        .setController('App\\Controller\\Admin\\VilleCrudController')
+                        .setAction('index') %}
+                    <a href="{{ ville_url }}" class="nav-link">Page villes</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {% set admin_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\AdminCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbAdmins }}</strong> Admins enregistrés - <a href="{{ admin_url_new }}">Créer un admin</a></p>
+
+    {% set adoptant_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\AdoptantCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbAdoptants }}</strong> Adoptants enregistrés - <a href="{{ adoptant_url_new }}">Créer un adoptant</a>
+    </p>
+
+    {% set adresse_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\AdresseCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbAdresses }}</strong> Adresses enregistrés - <a href="{{ adresse_url_new }}">Créer une adresse</a>
+    </p>
+
+    {% set annonce_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\AnnonceCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbAnnonces }}</strong> Annonces enregistrés - <a href="{{ annonce_url_new }}">Créer une annonce</a>
+    </p>
+
+    {% set departement_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\DepartementCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbDepartements }}</strong> Départements enregistrés - <a href="{{ departement_url_new }}">Créer un
+            département</a>
+    </p>
+
+    {% set dog_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\DogCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbDogs }}</strong> Chiens enregistrés - <a href="{{ dog_url_new }}">Créer un
+            chien</a>
+    </p>
+
+    {% set eleveurSpa_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\EleveurSpaCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbEleveurSpas }}</strong> Éleveurs/SPA enregistrés - <a href="{{ eleveurSpa_url_new }}">Créer un
+            éleveur ou une SPA</a>
+    </p>
+
+    {% set photo_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\PhotoCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbPhotos }}</strong> Photo - <a href="{{ photo_url_new }}">Créer une photo</a>
+    </p>
+
+    {% set user_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\UserCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbUsers }}</strong> Utilisateurs - <a href="{{ user_url_new }}">Créer un utilisateur</a>
+    </p>
+
+    {% set ville_url_new = ea_url()
+        .setController('App\\Controller\\Admin\\VillesCrudController')
+        .setAction('new') %}
+    <p><strong>{{ nbVilles }}</strong> Villes - <a href="{{ ville_url_new }}">Créer une ville</a>
+    </p>
+
+
+{% endblock %}
