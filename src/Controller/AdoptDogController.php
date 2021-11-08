@@ -65,10 +65,14 @@ class AdoptDogController extends AbstractController
 
 
         $contact = new Contact();
+
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){}
+        if($form->isSubmitted() && $form->isValid()){
+            $this->addFlash('success','Votre email a bien été envoyé');
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('adopt_dog/contact.html.twig',[
             'form' => $form->createView()
@@ -130,6 +134,7 @@ class AdoptDogController extends AbstractController
         return $this->render('adopt_dog/annonceShow.html.twig', [
         'annonce' => $annonce]);
      }
+
     /**
      * @Route("/eleveurs", name="eleveurs")
      */
@@ -138,7 +143,6 @@ class AdoptDogController extends AbstractController
         return $this->render('adopt_dog/eleveurs.html.twig');
     }
 
-
     /**
      * @Route("/spa", name="spa")
      */
@@ -146,9 +150,6 @@ class AdoptDogController extends AbstractController
     {
         return $this->render('adopt_dog/spa.html.twig');
     }
-
-
-
 
     /**
     *@Route("/eleveur", name="eleveur")
