@@ -11,6 +11,16 @@ use App\Entity\Dog;
 use App\Entity\EleveurSpa;
 use App\Entity\Photo;
 use App\Entity\Ville;
+use App\Repository\AdminRepository;
+use App\Repository\AdoptantRepository;
+use App\Repository\AdresseRepository;
+use App\Repository\AnnonceRepository;
+use App\Repository\DepartementRepository;
+use App\Repository\DogRepository;
+use App\Repository\EleveurSpaRepository;
+use App\Repository\PhotoRepository;
+use App\Repository\UserRepository;
+use App\Repository\VilleRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -21,15 +31,77 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+
+    private AdminRepository $adminRepository;
+    private AdoptantRepository $adoptantRepository;
+    private AdresseRepository $adresseRepository;
+    private AnnonceRepository $annonceRepository;
+    private DepartementRepository $departementRepository;
+    private DogRepository $dogRepository;
+    private EleveurSpaRepository $eleveurSpaRepository;
+    private PhotoRepository $photoRepository;
+    private UserRepository $userRepository;
+    private VilleRepository $villeRepository;
+
+    /**
+     * @param AdminRepository $adminRepository
+     * @param AdoptantRepository $adoptantRepository
+     * @param AdresseRepository $adresseRepository
+     * @param AnnonceRepository $annonceRepository
+     * @param DepartementRepository $departementRepository
+     * @param DogRepository $dogRepository
+     * @param EleveurSpaRepository $eleveurSpaRepository
+     * @param PhotoRepository $photoRepository
+     * @param UserRepository $userRepository
+     * @param VilleRepository $villeRepository
+     */
+    public function __construct(AdminRepository $adminRepository, AdoptantRepository $adoptantRepository, AdresseRepository $adresseRepository, AnnonceRepository $annonceRepository, DepartementRepository $departementRepository, DogRepository $dogRepository, EleveurSpaRepository $eleveurSpaRepository, PhotoRepository $photoRepository, UserRepository $userRepository, VilleRepository $villeRepository)
+    {
+        $this->adminRepository = $adminRepository;
+        $this->adoptantRepository = $adoptantRepository;
+        $this->adresseRepository = $adresseRepository;
+        $this->annonceRepository = $annonceRepository;
+        $this->departementRepository = $departementRepository;
+        $this->dogRepository = $dogRepository;
+        $this->eleveurSpaRepository = $eleveurSpaRepository;
+        $this->photoRepository = $photoRepository;
+        $this->userRepository = $userRepository;
+        $this->villeRepository = $villeRepository;
+    }
+
     /**
      * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
-        // redirect to some CRUD controller
-        $routeBuilder = $this->get(AdminUrlGenerator::class);
+        $nbAdmins = $this->adminRepository->countElements();
+        $nbAdoptants = $this->adoptantRepository->countElements();
+        $nbAdresses = $this->adresseRepository->countElements();
+        $nbAnnonces = $this->annonceRepository->countElements();
+        $nbDepartements = $this->departementRepository->countElements();
+        $nbDogs = $this->dogRepository->countElements();
+        $nbEleveurSpas = $this->eleveurSpaRepository->countElements();
+        $nbPhotos = $this->photoRepository->countElements();
+        $nbUsers = $this->userRepository->countElements();
+        $nbVilles = $this->villeRepository->countElements();
+        return $this->render('admin/admin-dashboard.html.twig', [
+            'nbAdmins' =>$nbAdmins,
+            'nbAdoptants' =>$nbAdoptants,
+            'nbAdresses' =>$nbAdresses,
+            'nbAnnonces' =>$nbAnnonces,
+            'nbDepartements' =>$nbDepartements,
+            'nbDogs' =>$nbDogs,
+            'nbEleveurSpas' =>$nbEleveurSpas,
+            'nbPhotos' =>$nbPhotos,
+            'nbUsers' =>$nbUsers,
+            'nbVilles' =>$nbVilles
+        ]);
 
-        return $this->redirect($routeBuilder->setController(EleveurSpaCrudController::class)->generateUrl());
+        // redirect to some CRUD controller
+//        $routeBuilder = $this->get(AdminUrlGenerator::class);
+//
+//        return $this->redirect($routeBuilder->setController(EleveurSpaCrudController::class)->generateUrl());
+//
     }
 
     public function configureDashboard(): Dashboard
