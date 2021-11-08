@@ -41,13 +41,18 @@ class AdoptDogController extends AbstractController
     public function home(Request $request, PaginatorInterface $paginator, AnnonceRepository $annonceRepository): Response
     {
         $donnees = $annonceRepository->findAll();
-
+/*
         $annonces = $paginator->paginate(
                     $donnees,
                     $request->query->getInt('page', 1),
                     5
                 );
-
+*/
+        $annonces  = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('adopt_dog/home.html.twig', [
             'annonces' => $annonces
         ]);

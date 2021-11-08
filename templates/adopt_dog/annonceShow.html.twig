@@ -67,10 +67,10 @@
                         {% endif %}
                     {% endif %}
                     <footer class="blockquote-footer">{{ annonce.date | date("d/m/Y") }}</footer>
-                    {% if app.user %}
+                    {% if is_granted("ROLE_ADOPTANT") %}
                     <a href="{{ path('new_adoption_request', {'id' : annonce.id}) }}" class="btn btn-outline-primary">Demande Adoption</a>
                     {% else %}
-                        <p>Veuillez vous connecter pour obtenir une demande d'adoption</p>
+                        <p>Veuillez vous connecter en tant qu'adoptant pour obtenir une demande d'adoption</p>
                     {% endif %}
                 </blockquote>
             </div>
