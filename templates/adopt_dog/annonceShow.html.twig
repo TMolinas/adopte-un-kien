@@ -8,10 +8,7 @@
         <div class="carousel">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 25em">
             <div class="carousel-inner">
-
-
                 {% set firstPhoto = true %}
-
                 {% for photo in annonce.firstPhotos %}
                     {% if firstPhoto %}
                         <div class="carousel-item active">
@@ -25,12 +22,7 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-
-
-
-
             </div>
-
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -40,8 +32,6 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
-
         </div>
         <div class="card">
             <div class="card-header">
@@ -95,6 +85,6 @@
 
 
 
-        <br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
 
 {% endblock %}
