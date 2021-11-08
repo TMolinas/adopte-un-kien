@@ -7,6 +7,7 @@ use App\Entity\Annonce;
 use App\Entity\Contact;
 use App\Form\AdoptantType;
 use App\Form\ContactType;
+use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Security\Http\Authenticator\Passport\UserPassportInterface;
 
 class AdoptDogController extends AbstractController
 {
@@ -38,10 +38,9 @@ class AdoptDogController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(Request $request, PaginatorInterface $paginator): Response
+    public function home(Request $request, PaginatorInterface $paginator, AnnonceRepository $annonceRepository): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Annonce::class);
-        $donnees = $repo->findAll();
+        $donnees = $annonceRepository->findAll();
 
         $annonces = $paginator->paginate(
                     $donnees,
