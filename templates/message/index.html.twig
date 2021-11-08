@@ -11,16 +11,19 @@
             <div class="card bg-light mb-3 offset-md-6" style="max-width: 18rem;">
                 <div class="card-header">{{ message.expediteur }}</div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ message.createdAt | date('d/m/Y H:i') }}</h5>
                     <p class="card-text">{{ message.content }}</p>
+                    <br />
+                    <footer class="blockquote-footer">{{ message.createdAt | date('d/m/Y H:i') }}</footer>
+
                 </div>
             </div>
             {% else %}
                 <div class="card bg-light mb-3 offset-md-3" style="max-width: 18rem;">
                     <div class="card-header">{{ message.expediteur }}</div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ message.createdAt | date('d/m/Y H:i') }}</h5>
                         <p class="card-text">{{ message.content }}</p>
+                        <br />
+                        <footer class="blockquote-footer">{{ message.createdAt | date('d/m/Y H:i') }}</footer>
                     </div>
                 </div>
             {% endif %}
