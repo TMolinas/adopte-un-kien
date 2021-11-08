@@ -22,12 +22,12 @@ class Adresse
     /**
      * @ORM\Column(type="string", length=10)
      */
-    private $nuberInStreet;
+    private $numberInStreet;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nameOf7Street;
+    private $nameOfStreet;
 
     /**
      * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="adresse")
@@ -45,26 +45,26 @@ class Adresse
         return $this->id;
     }
 
-    public function getNuberInStreet(): ?string
+    public function getNumberInStreet(): ?string
     {
-        return $this->nuberInStreet;
+        return $this->numberInStreet;
     }
 
-    public function setNuberInStreet(string $nuberInStreet): self
+    public function setNumberInStreet(string $numberInStreet): self
     {
-        $this->nuberInStreet = $nuberInStreet;
+        $this->numberInStreet = $numberInStreet;
 
         return $this;
     }
 
-    public function getNameOf7Street(): ?string
+    public function getNameOfStreet(): ?string
     {
-        return $this->nameOf7Street;
+        return $this->nameOfStreet;
     }
 
-    public function setNameOf7Street(string $nameOf7Street): self
+    public function setNameOfStreet(string $nameOfStreet): self
     {
-        $this->nameOf7Street = $nameOf7Street;
+        $this->nameOfStreet = $nameOfStreet;
 
         return $this;
     }
@@ -105,6 +105,6 @@ class Adresse
 
     public function __toString()
     {
-        return $this->getNuberInStreet().' '. $this->getNameOf7Street();
+        return $this->getNumberInStreet().' '. $this->getNameOfStreet();
     }
 }
