@@ -30,7 +30,6 @@ class Annonce
     private $date;
 
 
-
     /**
      * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="annonce")
      */
@@ -46,8 +45,6 @@ class Annonce
      * @ORM\OneToMany(targetEntity=AdoptionRequest::class, mappedBy="annonce")
      */
     private $adoptionRequests;
-
-
 
 
     public function __construct()
@@ -84,8 +81,6 @@ class Annonce
 
         return $this;
     }
-
-
 
 
     /**
@@ -142,19 +137,25 @@ class Annonce
         return null;
     }
 
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
     public function getFirstPhotos(): ArrayCollection
     {
         $ret = new ArrayCollection();
         foreach ($this->getDogs() as $dog) {
-            foreach($dog->getPhotos() as $photo) {
-            if ($photo) {
+            foreach ($dog->getPhotos() as $photo) {
                 $ret->add($photo);
+
             }
-            }
-        }   
+        }
 
         return $ret;
-        
     }
 
     /**
@@ -186,5 +187,4 @@ class Annonce
 
         return $this;
     }
-
 }

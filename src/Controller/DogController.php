@@ -14,8 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DogController extends AbstractController
 {
-
-
     /**
      * @Route("/dog/add", name="dog_add")
      * @param Request $request
@@ -31,7 +29,6 @@ class DogController extends AbstractController
         $formDog->handleRequest($request);
 
         if ($formDog->isSubmitted() && $formDog->isValid()) {
-
             $em->persist($dog);
             $em->flush();
 
@@ -41,6 +38,5 @@ class DogController extends AbstractController
         return $this->render('dog/ajouter.html.twig', [
             'formDog' => $formDog->createView()
         ]);
-
     }
 }

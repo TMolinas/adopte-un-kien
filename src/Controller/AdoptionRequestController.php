@@ -1,13 +1,16 @@
 <?php
 
-
 namespace App\Controller;
 
+use App\Entity\Adoptant;
 use App\Entity\AdoptionRequest;
 use App\Entity\Annonce;
+use App\Entity\EleveurSpa;
 use App\Entity\Message;
 use App\Entity\User;
 use App\Form\MessageType;
+use App\Repository\AdoptantRepository;
+use App\Repository\EleveurSpaRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,11 +23,21 @@ class AdoptionRequestController extends AbstractController
     /**
      * @Route("/adoption/request", name="adoption_request")
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, EleveurSpaRepository $eleveurSpaRepository, AdoptantRepository $adoptantRepository): Response
     {
-
         $user =  $userRepository->find($this->getUser());
-        $adoptionRequests = $user->getAdoptionRequests();
+        $adoptionRequests = null;
+        if ($user instanceof EleveurSpa)
+        {
+            $eleveur = $eleveurSpaRepository->find($user->getId());
+            $adoptionRequests = $eleveur->getAdoptionRequests();
+        }
+        elseif ($user instanceof Adoptant)
+        {
+            $adoptant = $adoptantRepository->find($user->getId());
+
+            $adoptionRequests = $adoptant->getAdoptionRequests();
+        }
 
 
         return $this->render('adoption_request/index.html.twig', [
@@ -38,15 +51,13 @@ class AdoptionRequestController extends AbstractController
     public function accept(AdoptionRequest $adoptionRequest, EntityManagerInterface $em): Response
     {
         $adoptionRequest->setIsAccepted(true);
-        foreach ($adoptionRequest->getAnnonce()->getDogs() as $dog)
-        {
+        foreach ($adoptionRequest->getAnnonce()->getDogs() as $dog) {
             $dog->setCanBeAdopted(false);
             $em->persist($dog);
         }
         $em->persist($adoptionRequest);
         $em->flush();
         return $this->redirectToRoute("adoption_request");
-
     }
 
     /**
@@ -56,9 +67,8 @@ class AdoptionRequestController extends AbstractController
      * @param Annonce $annonce
      * @return Response
      */
-    public function add(Request $request,EntityManagerInterface $em, Annonce $annonce): Response
+    public function add(Request $request, EntityManagerInterface $em, Annonce $annonce): Response
     {
-
         $adoptionRequest = new AdoptionRequest();
         $message = new Message();
         $formMessage = $this->createForm(MessageType::class, $message);
@@ -91,5 +101,4 @@ class AdoptionRequestController extends AbstractController
             'form_message' => $formMessage->createView()
         ]);
     }
-
 }

@@ -17,6 +17,14 @@ class Message
      */
     private $id;
 
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
 
     /**
      * @ORM\Column(type="text")

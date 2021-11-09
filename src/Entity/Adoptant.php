@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Adoptant extends User
 {
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -32,7 +31,6 @@ class Adoptant extends User
     public function __construct()
     {
         parent::__construct();
-        $this->eleveur = new ArrayCollection();
         $this->adoptionRequests = new ArrayCollection();
     }
 
@@ -101,7 +99,8 @@ class Adoptant extends User
         return $this;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->getUserIdentifier();
     }
 }

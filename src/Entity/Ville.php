@@ -44,6 +44,15 @@ class Ville
         return $this->id;
     }
 
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+
     public function getCityName(): ?string
     {
         return $this->cityName;
@@ -57,14 +66,14 @@ class Ville
     }
 
     /**
-     * @return Collection|adresse[]
+     * @return Collection|Adresse[]
      */
     public function getAdresse(): Collection
     {
         return $this->adresse;
     }
 
-    public function addAdresse(adresse $adresse): self
+    public function addAdresse(Adresse $adresse): self
     {
         if (!$this->adresse->contains($adresse)) {
             $this->adresse[] = $adresse;
@@ -74,7 +83,7 @@ class Ville
         return $this;
     }
 
-    public function removeAdresse(adresse $adresse): self
+    public function removeAdresse(Adresse $adresse): self
     {
         if ($this->adresse->removeElement($adresse)) {
             // set the owning side to null (unless already changed)

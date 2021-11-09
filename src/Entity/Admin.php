@@ -21,7 +21,8 @@ class Admin extends User
         return array_unique($roles);
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->getUserIdentifier();
     }
 }

@@ -32,13 +32,13 @@ class AdoptDogController extends AbstractController
     public function home(Request $request, PaginatorInterface $paginator, AnnonceRepository $annonceRepository): Response
     {
         $donnees = $annonceRepository->findAll();
-/*
-        $annonces = $paginator->paginate(
-                    $donnees,
-                    $request->query->getInt('page', 1),
-                    5
-                );
-*/
+        /*
+                $annonces = $paginator->paginate(
+                            $donnees,
+                            $request->query->getInt('page', 1),
+                            5
+                        );
+        */
         $annonces  = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
@@ -62,19 +62,17 @@ class AdoptDogController extends AbstractController
      */
     public function contactus(Request $request): Response
     {
-
-
         $contact = new Contact();
 
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $this->addFlash('success','Votre email a bien été envoyé');
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'Votre email a bien été envoyé');
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('adopt_dog/contact.html.twig',[
+        return $this->render('adopt_dog/contact.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -116,7 +114,7 @@ class AdoptDogController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute('home');
-    }
+        }
 
         return $this->render('adopt_dog/registrationAdoptant.html.twig', [
             'formAdoptant' => $formAdoptant->createView()
@@ -126,14 +124,15 @@ class AdoptDogController extends AbstractController
     /**
      *@Route("/annonce/{id}", name="annonceById")
      */
-     public function show($id) {
+    public function show($id)
+    {
         $repo = $this->getDoctrine()->getRepository(Annonce::class);
 
         $annonce = $repo->find($id);
 
         return $this->render('adopt_dog/annonceShow.html.twig', [
         'annonce' => $annonce]);
-     }
+    }
 
     /**
      * @Route("/eleveurs", name="eleveurs")

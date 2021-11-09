@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class InscriptionESpaController extends AbstractController
 {
     private UserPasswordHasherInterface $hasher;
@@ -35,8 +34,6 @@ class InscriptionESpaController extends AbstractController
      * @Route("/inscription_e_spa/new", name="inscription_eleveur")
      */
     public function new(Request $request, EntityManagerInterface $em): Response
-
-
     {
         $inscriptionESpa = new EleveurSpa();
         $form = $this->createForm(InscriptionESpaType::class, $inscriptionESpa);
@@ -56,6 +53,4 @@ class InscriptionESpaController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-
 }

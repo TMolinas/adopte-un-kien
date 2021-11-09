@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class EleveurSpa extends User
 {
-
     /**
      * @ORM\Column(type="boolean")
      */

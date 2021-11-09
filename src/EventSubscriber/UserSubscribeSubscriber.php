@@ -18,16 +18,16 @@ class UserSubscribeSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param BeforeEntityPersistedEvent| BeforeEntityUpdatedEvent
+     * @param BeforeEntityPersistedEvent|BeforeEntityUpdatedEvent $event
      */
-    public function onBeforeEntityPersistanceEvent( $event)
+    public function onBeforeEntityPersistanceEvent($event)
     {
         $user = $event->getEntityInstance();
-        if(!$user instanceof User){
+        if (!$user instanceof User) {
             return;
         }
 
-        if (empty($user->getPlainPassword())){
+        if (empty($user->getPlainPassword())) {
             return;
         }
         //encoder le password
