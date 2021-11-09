@@ -4,8 +4,8 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class Contact {
-
+class Contact
+{
     /**
      * @var string|null
      * @Assert\NotBlank()
@@ -122,6 +122,4 @@ class Contact {
     {
         $this->message = $message;
     }
-
-
 }

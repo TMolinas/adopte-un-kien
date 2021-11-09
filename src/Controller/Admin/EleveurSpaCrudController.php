@@ -13,7 +13,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-
 class EleveurSpaCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -31,8 +30,8 @@ class EleveurSpaCrudController extends AbstractCrudController
         ];
     }
     */
-   public function configureFields(string $pageName): iterable{
-
+    public function configureFields(string $pageName): iterable
+    {
         return [
             IdField::new('id')->hideOnForm(),
             BooleanField::new('isSpa'),
@@ -45,5 +44,5 @@ class EleveurSpaCrudController extends AbstractCrudController
 
 
         ];
-     }
+    }
 }

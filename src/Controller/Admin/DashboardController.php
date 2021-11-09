@@ -28,10 +28,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class DashboardController extends AbstractDashboardController
 {
-
     private AdminRepository $adminRepository;
     private AdoptantRepository $adoptantRepository;
     private AdresseRepository $adresseRepository;
@@ -134,14 +132,11 @@ class DashboardController extends AbstractDashboardController
             // need to generate relative URLs instead, call this method
             ->generateRelativeUrls()
             ;
-
-
-
     }
 
     public function configureMenuItems(): iterable
     {
-       return [
+        return [
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
             MenuItem::section('Admin'),

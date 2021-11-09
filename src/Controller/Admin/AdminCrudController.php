@@ -12,7 +12,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
 class AdminCrudController extends AbstractCrudController
 {
-
     private AdminUrlGenerator $adminUrlGenerator;
 
     public function __construct(AdminUrlGenerator $adminUrlGenerator)
@@ -25,7 +24,8 @@ class AdminCrudController extends AbstractCrudController
         return Admin::class;
     }
 
-    public function createLinks(){
+    public function createLinks()
+    {
         // if your application only contains one Dashboard, it's enough
         // to define the controller related to this URL
         $url = $this->adminUrlGenerator
@@ -43,7 +43,6 @@ class AdminCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('userName'),
@@ -62,6 +61,4 @@ class AdminCrudController extends AbstractCrudController
         ];
     }
     */
-
-
 }

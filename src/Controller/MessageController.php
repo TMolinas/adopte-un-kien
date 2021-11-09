@@ -22,17 +22,13 @@ class MessageController extends AbstractController
     {
         $messages = $adoptionRequest->getMessages();
         $messagesToRead = new ArrayCollection();
-        foreach($messages as $message )
-        {
-            if($message->getDestinaire()->getUserIdentifier() === $this->getUser()->getUserIdentifier())
-            {
+        foreach ($messages as $message) {
+            if ($message->getDestinaire()->getUserIdentifier() === $this->getUser()->getUserIdentifier()) {
                 $message->setIsRead(true);
                 $messagesToRead->add($message);
                 $em->persist($message);
                 $em->flush();
-            }
-            elseif ($message->getExpediteur()->getUserIdentifier() === $this->getUser()->getUserIdentifier())
-            {
+            } elseif ($message->getExpediteur()->getUserIdentifier() === $this->getUser()->getUserIdentifier()) {
                 $messagesToRead->add($message);
             }
         }

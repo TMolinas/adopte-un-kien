@@ -30,6 +30,14 @@ class Departement
     private $zipCode;
 
     /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @ORM\OneToMany(targetEntity=ville::class, mappedBy="departement")
      */
     private $ville;
@@ -69,14 +77,14 @@ class Departement
     }
 
     /**
-     * @return Collection|ville[]
+     * @return Collection|Ville[]
      */
     public function getVille(): Collection
     {
         return $this->ville;
     }
 
-    public function addVille(ville $ville): self
+    public function addVille(Ville $ville): self
     {
         if (!$this->ville->contains($ville)) {
             $this->ville[] = $ville;
@@ -86,7 +94,7 @@ class Departement
         return $this;
     }
 
-    public function removeVille(ville $ville): self
+    public function removeVille(Ville $ville): self
     {
         if ($this->ville->removeElement($ville)) {
             // set the owning side to null (unless already changed)

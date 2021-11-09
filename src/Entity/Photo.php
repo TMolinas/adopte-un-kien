@@ -20,6 +20,14 @@ class Photo
     private $id;
 
     /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $imgUrl;

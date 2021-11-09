@@ -27,7 +27,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
         $userAdoptant1 = new Adoptant();
         $userAdoptant1->setUserName('userAdoptant1');
         $userAdoptant1->setEmail('userAdoptant1@gmail.com');
@@ -58,7 +57,7 @@ class AppFixtures extends Fixture
         $roleEleveur1[] = 'ROLE_USER';
         $roleEleveur1[] = 'ROLE_ANNONCEUR';
         $userEleveurSpa1->setRoles($roleEleveur1);
-        $userEleveurSpa1->setIsSpa('true');
+        $userEleveurSpa1->setIsSpa(true);
         $userEleveurSpa1->setTelephone('0251611165');
         $pwd = $this->hasher->hashPassword($userEleveurSpa1, 'password');
         $userEleveurSpa1->setPassword($pwd);
@@ -74,7 +73,7 @@ class AppFixtures extends Fixture
         $roleEleveur2[] = 'ROLE_USER';
         $roleEleveur2[] = 'ROLE_ANNONCEUR';
         $userEleveurSpa2->setRoles($roleEleveur2);
-        $userEleveurSpa2->setIsSpa('true');
+        $userEleveurSpa2->setIsSpa(true);
         $userEleveurSpa2->setTelephone('0251611165');
         $pwd = $this->hasher->hashPassword($userEleveurSpa2, 'password');
         $userEleveurSpa2->setPassword($pwd);
@@ -90,7 +89,7 @@ class AppFixtures extends Fixture
         $roleEleveur3[] = 'ROLE_USER';
         $roleEleveur3[] = 'ROLE_ANNONCEUR';
         $userEleveurSpa3->setRoles($roleEleveur1);
-        $userEleveurSpa3->setIsSpa('true');
+        $userEleveurSpa3->setIsSpa(true);
         $userEleveurSpa3->setTelephone('0251611165');
         $pwd = $this->hasher->hashPassword($userEleveurSpa3, 'password');
         $userEleveurSpa3->setPassword($pwd);
@@ -152,63 +151,63 @@ class AppFixtures extends Fixture
         $dog1 = new Dog();
         $dog1->setNameOfDog('Chien 1');
         $dog1->setBreed('labrador');
-        $dog1->setCanBeAdopted('true');
+        $dog1->setCanBeAdopted(true);
         $dog1->addPhoto($photo1);
         $manager->persist($dog1);
 
         $dog2 = new Dog();
         $dog2->setNameOfDog('Chien 2');
         $dog2->setBreed('berger suisse');
-        $dog2->setCanBeAdopted('true');
+        $dog2->setCanBeAdopted(true);
         $dog2->addPhoto($photo2);
         $manager->persist($dog2);
 
         $dog3 = new Dog();
         $dog3->setNameOfDog('Chien 3');
         $dog3->setBreed('staffy');
-        $dog3->setCanBeAdopted('true');
+        $dog3->setCanBeAdopted(true);
         $dog3->addPhoto($photo3);
         $manager->persist($dog3);
 
         $dog4 = new Dog();
         $dog4->setNameOfDog('Chien 4');
         $dog4->setBreed('bull dog français');
-        $dog4->setCanBeAdopted('true');
+        $dog4->setCanBeAdopted(true);
         $dog4->addPhoto($photo4);
         $manager->persist($dog4);
 
         $dog5 = new Dog();
         $dog5->setNameOfDog('Chien 5');
         $dog5->setBreed('bordeur colee');
-        $dog5->setCanBeAdopted('true');
+        $dog5->setCanBeAdopted(true);
         $dog5->addPhoto($photo5);
         $manager->persist($dog5);
 
         $dog6 = new Dog();
         $dog6->setNameOfDog('Chien 6');
         $dog6->setBreed('berger australien');
-        $dog6->setCanBeAdopted('true');
+        $dog6->setCanBeAdopted(true);
         $dog6->addPhoto($photo6);
         $manager->persist($dog6);
 
         $dog7 = new Dog();
         $dog7->setNameOfDog('Chien 7');
         $dog7->setBreed('Pub/carlin');
-        $dog7->setCanBeAdopted('true');
+        $dog7->setCanBeAdopted(true);
         $dog7->addPhoto($photo7);
         $manager->persist($dog7);
 
         $dog8 = new Dog();
         $dog8->setNameOfDog('Chien 8');
         $dog8->setBreed('chiwawa');
-        $dog8->setCanBeAdopted('true');
+        $dog8->setCanBeAdopted(true);
         $dog8->addPhoto($photo8);
         $manager->persist($dog8);
 
         $dog9 = new Dog();
         $dog9->setNameOfDog('Chien 9');
         $dog9->setBreed('batard');
-        $dog9->setCanBeAdopted('true');
+        $dog9->setCanBeAdopted(true);
         $dog9->addPhoto($photo9);
         $manager->persist($dog9);
 

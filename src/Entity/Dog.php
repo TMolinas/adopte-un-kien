@@ -159,6 +159,14 @@ class Dog
     }
 
     /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return Collection|Photo[]
      */
     public function getPhotos(): Collection

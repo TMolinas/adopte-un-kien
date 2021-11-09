@@ -27,5 +27,4 @@ class UserCrudController extends AbstractCrudController
             TextField::new('plainPassword')->hideOnIndex(),
         ];
     }
-
 }

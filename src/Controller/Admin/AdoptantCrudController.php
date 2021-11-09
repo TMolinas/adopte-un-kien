@@ -29,8 +29,8 @@ class AdoptantCrudController extends AbstractCrudController
     }
     */
 
-  public function configureFields(string $pageName): iterable{
-
+    public function configureFields(string $pageName): iterable
+    {
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('nom'),
@@ -40,5 +40,5 @@ class AdoptantCrudController extends AbstractCrudController
             TextField::new('plainPassword')->hideOnIndex(),
             AdresseField::new('adresse')
         ];
-     }
-   }
+    }
+}
